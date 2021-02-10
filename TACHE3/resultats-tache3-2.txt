@@ -1,0 +1,216 @@
+Nom : Asterix3.pbm
+Dimensions : 500 500
+Nombre de segments : 7143
+
+Nom : Bugs_Bunny.pbm
+Dimensions : 416 768
+Nombre de segments : 4825
+
+Nom : Charlot.pbm
+Dimensions : 412 1216
+Nombre de segments : 5473
+
+Nom : Droopy_Wolf.pbm
+Dimensions : 821 687
+Nombre de segments : 1763
+
+Nom : France.pbm
+Dimensions : 2316 2376
+Nombre de segments : 19693
+
+Nom : FranceRegions.pbm
+Dimensions : 1200 1200
+Nombre de segments : 7091
+
+Nom : JoaquimHock-LesArbres.pbm
+Dimensions : 1500 2100
+Nombre de segments : 7313
+
+Nom : MAP244_font_Sans200.pbm
+Dimensions : 800 150
+Nombre de segments : 785
+
+Nom : MAP401_font_Sans200.pbm
+Dimensions : 800 150
+Nombre de segments : 503
+
+Nom : Manara.pbm
+Dimensions : 2898 1773
+Nombre de segments : 119
+
+Nom : One_Ring_inscription.pbm
+Dimensions : 1998 559
+Nombre de segments : 8107
+
+Nom : Picasso-ColombesDeLaPaix.pbm
+Dimensions : 500 500
+Nombre de segments : 4597
+
+Nom : Pink_Panther.pbm
+Dimensions : 1500 558
+Nombre de segments : 8727
+
+Nom : animaux.pbm
+Dimensions : 828 1232
+Nombre de segments : 1723
+
+Nom : arbre.pbm
+Dimensions : 1000 1000
+Nombre de segments : 19395
+
+Nom : asterix2.pbm
+Dimensions : 826 1460
+Nombre de segments : 13011
+
+Nom : baobab.pbm
+Dimensions : 6500 4850
+Nombre de segments : 170087
+
+Nom : carres_doublement_imbriques_1.pbm
+Dimensions : 9 9
+Nombre de segments : 13
+
+Nom : carres_doublement_imbriques_2.pbm
+Dimensions : 25 25
+Nombre de segments : 45
+
+Nom : carres_doublement_imbriques_3.pbm
+Dimensions : 57 57
+Nombre de segments : 109
+
+Nom : carres_doublement_imbriques_7.pbm
+Dimensions : 1017 1017
+Nombre de segments : 2029
+
+Nom : carres_doublement_imbriques_9.pbm
+Dimensions : 4089 4089
+Nombre de segments : 8173
+
+Nom : carres_imbriques_8.pbm
+Dimensions : 33 33
+Nombre de segments : 125
+
+Nom : carres_imbriques_8_R.pbm
+Dimensions : 33 33
+Nombre de segments : 125
+
+Nom : cheval.pbm
+Dimensions : 2000 1500
+Nombre de segments : 6621
+
+Nom : damier_4_5_0.pbm
+Dimensions : 4 5
+Nombre de segments : 29
+
+Nom : damier_4_5_1.pbm
+Dimensions : 4 5
+Nombre de segments : 29
+
+Nom : danseuses.pbm
+Dimensions : 2300 2000
+Nombre de segments : 15061
+
+Nom : dessin-delius.pbm
+Dimensions : 1600 994
+Nombre de segments : 4749
+
+Nom : deux-des-pleins.pbm
+Dimensions : 595 536
+Nombre de segments : 1955
+
+Nom : deux-des.pbm
+Dimensions : 595 536
+Nombre de segments : 1955
+
+Nom : disque100.pbm
+Dimensions : 100 100
+Nombre de segments : 401
+
+Nom : disque20.pbm
+Dimensions : 20 20
+Nombre de segments : 81
+
+Nom : doodle.pbm
+Dimensions : 2000 1545
+Nombre de segments : 681
+
+Nom : drowning-girl.pbm
+Dimensions : 3440 3470
+Nombre de segments : 50563
+
+Nom : elephant-gotlib.pbm
+Dimensions : 1350 2000
+Nombre de segments : 12219
+
+Nom : fleurs.pbm
+Dimensions : 4096 4096
+Nombre de segments : 160623
+
+Nom : gai-luron.pbm
+Dimensions : 1112 1390
+Nombre de segments : 7519
+
+Nom : garfield.pbm
+Dimensions : 1200 922
+Nombre de segments : 8971
+
+Nom : gaston_au_lit.pbm
+Dimensions : 3200 3750
+Nombre de segments : 95505
+
+Nom : gaston_champagne.pbm
+Dimensions : 3000 2500
+Nombre de segments : 1027
+
+Nom : goudyini-A.pbm
+Dimensions : 1000 1000
+Nombre de segments : 3841
+
+Nom : gymnaste3.pbm
+Dimensions : 788 1432
+Nombre de segments : 5041
+
+Nom : hamster-jovial.pbm
+Dimensions : 3008 2332
+Nombre de segments : 17909
+
+Nom : image_poly_tache6.pbm
+Dimensions : 50 50
+Nombre de segments : 387
+
+Nom : lettre-L-cursive.pbm
+Dimensions : 500 500
+Nombre de segments : 3215
+
+Nom : map401.pbm
+Dimensions : 830 300
+Nombre de segments : 8073
+
+Nom : newton_gotlib.pbm
+Dimensions : 3000 1938
+Nombre de segments : 73885
+
+Nom : old_car_C.pbm
+Dimensions : 1880 840
+Nombre de segments : 6199
+
+Nom : papillon2.pbm
+Dimensions : 1122 417
+Nombre de segments : 2101
+
+Nom : pieuvre.pbm
+Dimensions : 600 500
+Nombre de segments : 6249
+
+Nom : sapin.pbm
+Dimensions : 3320 4480
+Nombre de segments : 2417
+
+Nom : velo.pbm
+Dimensions : 774 800
+Nombre de segments : 5605
+
+Nom : zebre3.pbm
+Dimensions : 800 1200
+Nombre de segments : 467
+
