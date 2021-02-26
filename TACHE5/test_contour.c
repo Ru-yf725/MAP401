@@ -8,7 +8,7 @@ int main(int argc, char** argv)
 {
 	if (argc != 3)
 	{
-		fprintf(stderr, "[USAGE] : ./test_contour exemple.pbm exemple.contours\n");
+		fprintf(stderr, "[USAGE] : ./test_contour exemple_image.pbm exemple_image.contours\n");
 		return -1;
 	}
 
@@ -31,23 +31,45 @@ int main(int argc, char** argv)
 
     printf("== CONTOURS TROUVES ==\n");
 
-    FILE* f_eps = fopen(argv[2],"w");
+    FILE* f_eps = fopen("sortie.eps","w");
 
     /* Headers du fichier EPS */
     fprintf(f_eps, "%c!PS-Adobe-3.0 EPSF-3.0\n",'%');
     fprintf(f_eps, "%c%cBoundingBox: 0 0 %u %u\n",'%','%', I.L, I.H);
     fprintf(f_eps, "/l {lineto} def \n/m {moveto} def \n/s {stroke} def\n/f {fill} def\n");
 
-    FILE* f_contour = fopen("sortie.contours.txt","w");
+    char txt[40];
+    strcat(txt, argv[1]);
+    strcat(txt, ".contours");
+
+    FILE* f_contour = fopen(txt,"w");
+
+    int nd = 0;
+    int ng = 0;
 
     /* Tant qu'il existe un pixel noir dans l'image mask */
     do {
-        det_contour(I, &M, P0, &R, &C);
+        det_contour(I, &M, P0, &R, &C, &nd, &ng);
+
         somme_segments += C.taille-1;
         PM = trouver_pixel_depart(M);
         nombre_de_points += C.taille;
 
-        convert_to_EPS(C, 3, I, f_eps);
+        printf("nd = %d\n", nd);
+        printf("ng = %d\n", ng);
+
+        if (nd == ng - 4)
+        {
+        	convert_to_EPS(C, 1, I, f_eps);
+        }
+        else if (nd == ng + 4)
+        {
+        	convert_to_EPS(C, 3, I, f_eps);
+        }
+
+    	nd = 0;
+        ng = 0;
+        
         sauvegarder_contour(f_contour,C);
 
         printf("== CONTOURS : == \n\n");
@@ -75,22 +97,17 @@ int main(int argc, char** argv)
     printf("Somme de segments : %d\n", somme_segments);
     printf("Nombre de points : %d\n", nombre_de_points);
 
-    // sauvegarder_image(M,"mask.pbm");
-
 
     /* Ci-dessous la partie ecriture dans le fichier *.contours (de sortie) */
 
-    //sauvegarder_contour(argv[2],C);
+    sauvegarder_contour(f_contour, C);
     
     /* Sortie format EPS selon le mode choisi */
 
-    //convert_to_EPS(C, argv[2], 3, I);
-
-    char txt[40];
-    strcat(txt, "sortie.contours.txt");
+    //convert_to_EPS(C, 3, I, f_eps);
 
     printf("\n> Sortie [.txt] enregistrée sous le nom \"%s\"\n", txt);
 
-    printf("Fichier PostScript enregistré sous le nom \"%s\"\n", argv[2]);
+    printf("Fichier PostScript enregistré sous le nom \"%s\"\n", "sortie.eps");
 
 }

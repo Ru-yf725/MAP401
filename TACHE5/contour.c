@@ -99,14 +99,15 @@ void tourner_a_gauche(Robot* R)
 }
 
 
-void nouvelle_orientation(Robot* R, Image I)
+void nouvelle_orientation(Robot* R, Image I, int* nd, int* ng)
 {
     Pixel pG, pD;
     pixel_devant_robot(*R, I, &pG, &pD);
-    
+
     if (pG == BLANC && pD == BLANC)
     {
         tourner_a_droite(R);
+        ++(*nd);
         return;
     }
 
@@ -118,12 +119,14 @@ void nouvelle_orientation(Robot* R, Image I)
     if (pG == NOIR && pD == BLANC)
     {
         tourner_a_gauche(R);
+        ++(*ng);
         return;
     }
 
     if (pG == NOIR && pD == NOIR)
     {
         tourner_a_gauche(R);
+        ++(*ng);
         return;
     }
 }
@@ -289,7 +292,7 @@ Image mask_detection(Image I)
     return M;
 }
 
-void det_contour(Image I, Image* M, Point P0, Robot* R, Contour* C)
+void det_contour(Image I, Image* M, Point P0, Robot* R, Contour* C, int* nd, int* ng)
 {
     P0 = trouver_pixel_depart(*M);
 
@@ -311,7 +314,7 @@ void det_contour(Image I, Image* M, Point P0, Robot* R, Contour* C)
             M->tab[(int)(P_current.x)+I.L*((int)(P_current.y))] = BLANC;
         }
         avancer(R);
-        nouvelle_orientation(R, I);
+        nouvelle_orientation(R, I, nd, ng);
         
     } while(!( (R->x == P0.x) && (R->y == P0.y) && (R->O == EST) ));
     memoriser_position(*R, C, P0);
