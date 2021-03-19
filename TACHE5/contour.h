@@ -30,7 +30,7 @@ void tourner_a_droite(Robot *r);
 void tourner_a_gauche(Robot *r);
 
 /*change l'orientation du robot */
-void nouvelle_orientation(Robot *r, Image I, int* nd, int* ng);
+void nouvelle_orientation(Robot *r, Image I);
 
 /*Ecrit a l'ecran les positions successive du robot a stocker aussi en memoire */
 void memoriser_position(Robot R, Liste_Point* L, Point P);
@@ -45,6 +45,6 @@ void convert_to_EPS(Contour C, int mode, Image I, FILE* f);
 
 Image mask_detection(Image I);
 
-void det_contour(Image I, Image* M, Point P0, Robot* R, Contour* C, int*, int*);
+void det_contour(Image I, Image* M, Point P0, Robot* R, Contour* C);
 
 #endif /* _CONTOUR_IMAGE_H_ */

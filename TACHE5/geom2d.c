@@ -8,7 +8,7 @@ Point set_point(double x, double y)
   return P;
 }
 
-Point set_vecteur(double x, double y)
+Vecteur set_vecteur(double x, double y)
 {
   Vecteur V;
 
@@ -22,6 +22,12 @@ Point set_vecteur(double x, double y)
 Point add_point(Point P1, Point P2)
 {
   return set_point(P1.x+P2.x, P1.y+P2.y);
+}
+
+// P1 - P2
+Point soustraction_point(Point P1, Point P2)
+{
+  return set_point(P1.x-P2.x, P1.y-P2.y);
 }
 
 Vecteur vect_bipoint(Point A, Point B)
@@ -73,3 +79,38 @@ void afficher_vecteur(Vecteur V)
     printf("(%f,%f)\n", V.x,V.y);
 }
 
+double distance_point_segment(Point P, Point A, Point B)
+{
+    int lambda;
+    Point Q;
+
+    if (A.x == B.x && A.y == B.y)
+    {
+      return distance(A,P);
+    }
+    else
+    {
+        lambda = produit_scalaire(vect_bipoint(A,P),vect_bipoint(A,B))/(produit_scalaire(vect_bipoint(A,B), vect_bipoint(A,B)));
+        
+        if (lambda < 0)
+        {
+          return distance(A,P);
+        }
+
+        else if (lambda >= 0 && lambda <= 1)
+        {
+          Point TMP = soustraction_point(B,A);
+
+          TMP.x = TMP.x * lambda;
+          TMP.y = TMP.y * lambda;
+
+          Q = add_point(A,TMP);
+          
+          return distance(Q,P);
+        }
+        else
+        {
+          return distance(B,P);
+        }
+    }
+}

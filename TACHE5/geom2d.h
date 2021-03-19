@@ -4,10 +4,13 @@
 Point set_point(double x, double y);
 
 /* cree le vecteur de coordonnées (x,y) */
-Point set_vecteur(double x, double y);
+Vecteur set_vecteur(double x, double y);
 
 /* Somme de P1+P2 */
 Point add_point(Point P1, Point P2);
+
+/* Soustraction P1-P2 */
+Point soustraction_point(Point P1, Point P2);
 
 /* vecteur correspondant au bipoint AB */
 Vecteur vect_bipoint(Point A, Point B);
@@ -32,3 +35,7 @@ double produit_scalaire(Vecteur V1, Vecteur V2);
 
 /* Norme d'un vecteur */
 double norme_vecteur(Vecteur V);
+
+/* Distance point segment */
+double distance_point_segment(Point P, Point A, Point B);
+

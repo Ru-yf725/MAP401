@@ -99,7 +99,7 @@ void tourner_a_gauche(Robot* R)
 }
 
 
-void nouvelle_orientation(Robot* R, Image I, int* nd, int* ng)
+void nouvelle_orientation(Robot* R, Image I)
 {
     Pixel pG, pD;
     pixel_devant_robot(*R, I, &pG, &pD);
@@ -107,7 +107,6 @@ void nouvelle_orientation(Robot* R, Image I, int* nd, int* ng)
     if (pG == BLANC && pD == BLANC)
     {
         tourner_a_droite(R);
-        ++(*nd);
         return;
     }
 
@@ -119,14 +118,12 @@ void nouvelle_orientation(Robot* R, Image I, int* nd, int* ng)
     if (pG == NOIR && pD == BLANC)
     {
         tourner_a_gauche(R);
-        ++(*ng);
         return;
     }
 
     if (pG == NOIR && pD == NOIR)
     {
         tourner_a_gauche(R);
-        ++(*ng);
         return;
     }
 }
@@ -204,7 +201,7 @@ void convert_to_EPS(Contour C, int mode, Image I, FILE* f)
         }
 
 
-        fprintf(f, "\n0 setlinewidth\nstroke\n");
+        fprintf(f, "\n0 setlinewidth\ns\n");
 
         fprintf(f,"closepath\n");
     }
@@ -245,7 +242,7 @@ void convert_to_EPS(Contour C, int mode, Image I, FILE* f)
             current = current->suiv;
         }
 
-        fprintf(f, "\n0 setlinewidth\nstroke\n");
+        fprintf(f, "\n0 setlinewidth\ns\n");
 
         fprintf(f,"closepath\n\n");
         
@@ -265,8 +262,8 @@ void convert_to_EPS(Contour C, int mode, Image I, FILE* f)
             current = current->suiv;
         }
 
-        fprintf(f, "\n0 setlinewidth\nfill\n");
-        fprintf(f,"closepath\n\n");
+       // fprintf(f, "\n\nf\n");
+       // fprintf(f,"closepath\n\n");
     }
 }
 
@@ -292,7 +289,7 @@ Image mask_detection(Image I)
     return M;
 }
 
-void det_contour(Image I, Image* M, Point P0, Robot* R, Contour* C, int* nd, int* ng)
+void det_contour(Image I, Image* M, Point P0, Robot* R, Contour* C)
 {
     P0 = trouver_pixel_depart(*M);
 
@@ -314,7 +311,7 @@ void det_contour(Image I, Image* M, Point P0, Robot* R, Contour* C, int* nd, int
             M->tab[(int)(P_current.x)+I.L*((int)(P_current.y))] = BLANC;
         }
         avancer(R);
-        nouvelle_orientation(R, I, nd, ng);
+        nouvelle_orientation(R, I);
         
     } while(!( (R->x == P0.x) && (R->y == P0.y) && (R->O == EST) ));
     memoriser_position(*R, C, P0);

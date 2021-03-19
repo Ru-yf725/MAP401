@@ -12,6 +12,7 @@ void init_robot(Point P, Robot* R)
 
 Point trouver_pixel_depart(Image I)
 {
+
     Point P = {-1,-1};
 
     for (UINT i = 1; i < I.H; i++)

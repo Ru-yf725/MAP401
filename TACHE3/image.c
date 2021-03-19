@@ -147,14 +147,14 @@ Image lire_fichier_image(char *nom_f)
 {
 	FILE *f;
 	UINT L,H;
-//	UINT x,y;
-//	int res_fscanf;
+
 	Image I;
-        
-        Pixel v;
+
+    Pixel v;
 	
 	/* ouverture du fichier nom_f en lecture */
 	f = fopen(nom_f, "r");
+
 	if (f == NULL)
 	{
 		ERREUR_FATALE("lire_fichier_image : ouverture du fichier impossible\n");
@@ -168,12 +168,14 @@ Image lire_fichier_image(char *nom_f)
      {        
           printf("[ERREUR LECTURE] : Largeur");
      }
-      I.L = L;
+
+     I.L = L;
 
      if (fscanf(f,"%d",&H)==EOF)
      {
          printf("[ERREUR LECTURE] : Hauteur");
      }
+
      I.H = H;
      
      I = creer_image(L,H);  
@@ -189,18 +191,18 @@ Image lire_fichier_image(char *nom_f)
 
      while((fscanf(f, "%c", &c) != EOF) && i<L*H)
      {
-       if (c =='0')
+       if (c == '0') // Si le chiffre courant est 0, le pixel est blanc
        {
-           v=BLANC ;
+           v = BLANC ;
        }
      
-       else if (c=='1')
+       else if (c == '1') // Si le chiffre courant est 1, le pixel est noir
        {
            v = NOIR ;
        }
-       else
+       else // ici on considère tout autre valeur non-nulle comme noir
        {
-         continue;
+           v = NOIR;
        }
        set_pixel_image(I, (i%L)+1, (i/L)+1, v);
        i++;    

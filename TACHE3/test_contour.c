@@ -17,6 +17,12 @@ int main(int argc, char** argv)
 	Robot R;
 
     I = lire_fichier_image(argv[1]);
+
+    if (I.L <= 0 || I.H <= 0)
+    {
+        fprintf(stderr,"\n[ERREUR] : Image vide ou Mauvais dimensions\n");
+        return -1;
+    }
     
     Point P0;
     P0 = trouver_pixel_depart(I);
