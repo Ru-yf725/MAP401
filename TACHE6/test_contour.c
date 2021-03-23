@@ -52,15 +52,6 @@ int main(int argc, char** argv)
         PM = trouver_pixel_depart(M);
         nombre_de_points += C.taille;
 
-        /*if (nd == ng - 4)
-        {
-        	convert_to_EPS(C, 1, I, f_eps);
-        }
-        else if (nd == ng + 4)
-        {
-        	convert_to_EPS(C, 3, I, f_eps);
-        }*/
-
         convert_to_EPS(C, 3, I, f_eps);
 
         sauvegarder_contour(f_contour,C);

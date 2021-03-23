@@ -13,7 +13,6 @@ Liste_Point simplification_douglas_peucker(Tableau_Point C, int j1, int j2, doub
   for (int j = j1 + 1 ; j <= j2 ; j++)
   {
     dj = distance_point_segment(C.tab[j], C.tab[j1], C.tab[j2]);
-
     if (dmax < dj)
     {
       dmax = dj;
@@ -22,11 +21,13 @@ Liste_Point simplification_douglas_peucker(Tableau_Point C, int j1, int j2, doub
   }
   if (dmax <= d)
   {
+    
     ajouter_element_liste_Point(&L, C.tab[j1]);
     //ajouter_element_liste_Point(&L, C.tab[j2]);
   }
   else
   {
+
     L1 = simplification_douglas_peucker(C,j1,k,d);
     L2 = simplification_douglas_peucker(C,k,j2,d);
     L = concatener_liste_Point(L1,L2);

@@ -9,10 +9,9 @@ void afficher_tableau(Tableau_Point T)
 	}
 }
 
-void init_tableau(Tableau_Point* T)
+void vider_tableau(Tableau_Point* T)
 {
-	Point P = {0,0};
-
+	Point P = {-1,-1};
 	for (int i = 0 ; i < T->taille ; i++)
 	{
 		T->tab[i] = P;
@@ -29,7 +28,7 @@ void convert_to_EPS_(Contour C, int mode, Image I, FILE* f)
     }
 
     // Cellule d'itération
-    Cellule_Liste_Point* current = C.first; 
+    Cellule_Liste_Point* current = C.first->suiv; 
 
     if (mode == 1) // Mode contour avec segments
     {
@@ -118,10 +117,10 @@ int main(int argc, char** argv)
 {
 	int d;
 	Image I;
-	Liste_Point C;
+	Contour C;
 	Robot R;
 	Tableau_Point T;
-	Liste_Point L;
+	Contour L;
 
 	I = lire_fichier_image(argv[1]);
 
@@ -140,33 +139,48 @@ int main(int argc, char** argv)
     fprintf(f, "%c%cBoundingBox: 0 0 %u %u\n",'%','%', I.L, I.H);
     fprintf(f, "/l {lineto} def \n/m {moveto} def \n/s {stroke} def\n/f {fill} def\n");
 
-//	do {
-for (int k = 0 ; k < 2 ; k++)
-{
-        det_contour(I, &M, P0, &R, &C);
+    int nombre_contours = 0;
+    int somme_segments_total = 0;
+    int somme_segments_simpli = 0;
+    int nombre_de_points = 0;
+
+
+	do {
+
+		C = creer_liste_Point_vide();
+
+		det_contour(I, &M, P0, &R, &C);
+
+		++nombre_contours;
+		somme_segments_total += C.taille-1;
+		nombre_de_points += C.taille;
 
         PM = trouver_pixel_depart(M);
 
-        //printf("== CONTOURS : == \n\n");
-        //ecrire_contour(C);
         T = sequence_points_liste_vers_tableau(C);
-        //printf("== TABLEAU : == \n\n");
-        //afficher_tableau(T);
-        L = simplification_douglas_peucker(T,0,1500,d);
-        //printf("== CONTOUR L : == \n\n");
+
+        L = simplification_douglas_peucker(T,0,C.taille-1,d);
+
+        ajouter_element_liste_Point(&L, L.first->data);
+
+        somme_segments_simpli += L.taille-1;
+
         ecrire_contour(L);
 
- 		//sauvegarder_contour(f, L);
+        convert_to_EPS_(L, 3, I, f);
 
-    //	} while (PM.x != -1 && PM.y != -1);
-}
+ 		//sauvegarder_contour(f_con, L);
 
-convert_to_EPS_(L, 1, I, f);
+    	} while (PM.x != -1 && PM.y != -1);
+
 
     fprintf(f, "\nf\n");
-    fprintf(f, "\nclosepath");
     fprintf(f, "\nshowpage\n");
-
     fclose(f);
+
+    printf("nombre de segments : %d\n", somme_segments_total);
+    printf("nombre de contours : %d\n", nombre_contours);
+    //printf("nombre de points : %d\n", nombre_de_points);
+    printf("nombre de segments après simplification : %d\n", somme_segments_simpli);
 
 }
