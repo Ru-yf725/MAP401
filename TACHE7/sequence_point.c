@@ -6,7 +6,9 @@
 Cellule_Liste_Point *creer_element_liste_Point(Point v)
 {
 	Cellule_Liste_Point *el;
+
 	el = (Cellule_Liste_Point *)malloc(sizeof(Cellule_Liste_Point));
+	
 	if (el==NULL)
 	{
 		fprintf(stderr, "creer_element_liste_Point : allocation impossible\n");
@@ -14,6 +16,7 @@ Cellule_Liste_Point *creer_element_liste_Point(Point v)
 	}
 	el->data = v;
 	el->suiv = NULL;
+
 	return el;
 }
 
@@ -121,3 +124,19 @@ void ecrire_contour(Liste_Point L)
 	
 	free(TP.tab); /* supprimer le tableau de point TP */
 }
+
+Bezier2 add_bezier_2(Point Q0, Point Q1, Point Q2)
+{
+	Bezier2 B2;
+
+	B2.C0 = Q0;
+	B2.C1 = Q1;
+	B2.C2 = Q2;
+
+	return B2;
+}
+
+
+
+
+

@@ -28,6 +28,21 @@ typedef struct Tableau_Point_
   Point *tab;          /* (pointeur vers) le tableau des éléments */
 } Tableau_Point; 
 
+typedef struct Bezier2_
+{
+  Point C0;
+  Point C1;
+  Point C2;
+} Bezier2;
+
+typedef struct Bezier3_
+{
+  Point C0;
+  Point C1;
+  Point C2;
+  Point C3;
+} Bezier3;
+
 Cellule_Liste_Point *creer_element_liste_Point(Point v);
 /* créer une liste vide */
 Liste_Point creer_liste_Point_vide();
@@ -50,5 +65,10 @@ Tableau_Point sequence_points_liste_vers_tableau(Liste_Point L);
    tableau de points afin de pouvoir par la suite accéder aux éléments d'une
    séquence de points par indice */
 void ecrire_contour(Liste_Point L);
+
+/* Ajoute les 3 points à Bezier */
+Bezier2 add_bezier_2(Point Q0, Point Q1, Point Q2);
+
+
 
 #endif

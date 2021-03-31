@@ -33,6 +33,9 @@ Vecteur soustraction(Vecteur U, Vecteur V);
 /* Multiplication d'un vecteur par un scalaire r */
 Vecteur mult_scalaire(double r, Vecteur V);
 
+/* Multiplication d'un point par un réel */
+Point mult_Point(double k, Point P);
+
 /* Produit scalaire de 2 vecteurs */
 double produit_scalaire(Vecteur V1, Vecteur V2);
 

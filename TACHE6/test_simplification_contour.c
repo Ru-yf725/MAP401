@@ -115,6 +115,12 @@ void convert_to_EPS_(Contour C, int mode, Image I, FILE* f)
 
 int main(int argc, char** argv)
 {
+        if (argc != 3)
+        {
+          printf("Usage: ./test_simplification [IMAGE] [d]\n");
+          return -1;
+        }
+
 	int d;
 	Image I;
 	Contour C;
@@ -178,9 +184,10 @@ int main(int argc, char** argv)
     fprintf(f, "\nshowpage\n");
     fclose(f);
 
+    printf("Fichier : %s\n", argv[1]);
     printf("nombre de segments : %d\n", somme_segments_total);
     printf("nombre de contours : %d\n", nombre_contours);
-    //printf("nombre de points : %d\n", nombre_de_points);
+    printf("d = %d\n", d);
     printf("nombre de segments après simplification : %d\n", somme_segments_simpli);
 
 }

@@ -35,7 +35,7 @@ Liste_Point simplification_douglas_peucker(Tableau_Point C, int j1, int j2, doub
   return L;
 }
 
-Liste_Point simplification_douglas_peucker_bezier2(Contour C, int j1, int j2, double d)
+/*Liste_Point simplification_douglas_peucker_bezier2(Contour C, int j1, int j2, double d)
 {
   double dmax = 0;
   int k = j1;
@@ -68,4 +68,4 @@ Liste_Point simplification_douglas_peucker_bezier2(Contour C, int j1, int j2, do
     L = concatener_liste_Point(L1,L2);
   }
   return L;
-}
+}*/

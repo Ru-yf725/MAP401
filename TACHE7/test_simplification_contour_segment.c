@@ -174,13 +174,16 @@ int main(int argc, char** argv)
     	} while (PM.x != -1 && PM.y != -1);
 
 
+
+
     fprintf(f, "\nf\n");
     fprintf(f, "\nshowpage\n");
     fclose(f);
 
+    printf("Fichier : %s\n", argv[1]);
     printf("nombre de segments : %d\n", somme_segments_total);
     printf("nombre de contours : %d\n", nombre_contours);
-    //printf("nombre de points : %d\n", nombre_de_points);
+    printf("d =  : %d\n", d);
     printf("nombre de segments après simplification : %d\n", somme_segments_simpli);
 
 }

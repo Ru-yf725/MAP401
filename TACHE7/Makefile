@@ -108,7 +108,7 @@ test_geom2d: geom2d.o test_geom2d.o
 test_contour: contour.o test_contour.o image.o sequence_point.o
 	clang $^ -o $@
 
-test_simplification_contour_bezier: test_simplification_contour.o geom2d.o sequence_point.o image.o contour.o simplification_contour.o
+test_simplification_contour_bezier: test_simplification_contour_bezier.o geom2d.o sequence_point.o image.o contour.o simplification_contour.o
 	clang $^ -o $@
 
 # regle pour "nettoyer" le répertoire

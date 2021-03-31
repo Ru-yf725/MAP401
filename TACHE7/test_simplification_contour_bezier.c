@@ -106,14 +106,130 @@ void convert_to_EPS_(Contour C, int mode, Image I, FILE* f)
             fprintf(f, "%.1f %.1f l %.1f %.1f l\n", previous_point.x, I.H-previous_point.y, current->suiv->data.x, I.H-current->suiv->data.y);
             current = current->suiv;
         }
-
-       // fprintf(f, "\n\nf\n");
-       // fprintf(f,"closepath\n\n");
     }
 }
 
+Bezier2 approx_bezier2(Contour C, double n)
+{
+
+  Tableau_Point T = sequence_points_liste_vers_tableau(C);
+
+  Bezier2 B2;
+
+  B2.C0 = T.tab[0];
+  B2.C2 = T.tab[C.taille-1];
+
+  B2.C1 = set_point(0,0);
+
+  if (n == 1)
+  {
+    B2.C1 = add_point(T.tab[0],T.tab[1]);
+    B2.C1.x = B2.C1.x * 0.5;
+    B2.C1.y = B2.C1.y * 0.5;
+  }
+  else if (n >= 2)
+  {
+    double alpha = 3*n/(n*n-1);
+    double beta = (1-2*n)/(2*(n+1));
+
+    Point Aux; // Auxiliary point
+    
+    Aux = add_point(T.tab[0],T.tab[1]);
+
+    Aux = mult_Point(beta, Aux);
+
+    //afficher_point(Aux);
+
+    for (int i = 1 ; i <= (int)n-1 ; i++)
+    {
+      //B2.C1 = add_point(B2.C1,T.tab[i]);
+        B2.C1.x += T.tab[i].x;
+        B2.C1.y += T.tab[i].y;
+    }
+
+    B2.C1.x = alpha * B2.C1.x;
+    B2.C1.y = alpha * B2.C1.y;
+
+    B2.C1 = add_point(B2.C1, Aux);
+
+  }
+
+  return B2;
+}
+
+/*Contour contour_poly(Contour C)
+{
+    Tableau_Point P = sequence_points_liste_vers_tableau(C);   
+
+}*/
+
+Point BEZIER_2(Bezier2 B, double t)
+{
+    return (add_point(add_point(
+            mult_Point((1-t)*(1-t),B.C0),
+            mult_Point(2*t*(1-t),B.C1)),
+            mult_Point(t*t, B.C2)));
+}
+
+/*Point BEZIER_3(Contour C, double t)
+{
+    Tableau_Point T = sequence_points_liste_vers_tableau(C);
+    
+    return ;
+}*/
 
 int main(int argc, char** argv)
+{
+    Contour C;
+
+    Point Q0 = set_point(3,2);
+    Point Q1 = set_point(1,0);
+    Point Q2 = set_point(1,3);
+
+    Bezier2 B2, B2_bis;
+    B2 = add_bezier_2(Q0, Q1, Q2);
+
+    
+    /*Point P1 = BEZIER_2(B2,1/2);
+    Point P2 = BEZIER_2(B2,1);*/
+
+    Point P;
+
+    int n;
+    scanf("%d", &n);
+    
+    for (int i = 0 ; i <= n ; i++)
+    {
+        P = BEZIER_2(B2, (double)i / (double)n);
+        ajouter_element_liste_Point(&C, P);
+    }
+
+    B2_bis = approx_bezier2(C,n);
+
+    printf("== BEZIER : ==\n");
+
+    afficher_point(B2.C0);
+    afficher_point(B2.C1);
+    afficher_point(B2.C2);
+
+    printf("== B2 : ==\n");
+    afficher_point(B2_bis.C0);
+    afficher_point(B2_bis.C1);
+    afficher_point(B2_bis.C2);
+
+    //afficher_point(P0);
+    //afficher_point(P1);
+    //afficher_point(P2);
+    //Contour P;
+    //ajouter_element_liste_Point(&P, P0);
+    //ajouter_element_liste_Point(&P, P1);
+    //ajouter_element_liste_Point(&P, P2);
+
+    //ecrire_contour(P);
+
+}
+
+/*int main(int argc, char** argv)
 {
 	int d;
 	Image I;
@@ -134,7 +250,7 @@ int main(int argc, char** argv)
 
 	FILE* f = fopen("contour_simplifie_sortie.eps","w");
 
-	/* Headers du fichier EPS */
+	// Headers du fichier EPS 
     fprintf(f, "%c!PS-Adobe-3.0 EPSF-3.0\n",'%');
     fprintf(f, "%c%cBoundingBox: 0 0 %u %u\n",'%','%', I.L, I.H);
     fprintf(f, "/l {lineto} def \n/m {moveto} def \n/s {stroke} def\n/f {fill} def\n");
@@ -183,4 +299,4 @@ int main(int argc, char** argv)
     //printf("nombre de points : %d\n", nombre_de_points);
     printf("nombre de segments après simplification : %d\n", somme_segments_simpli);
 
-}
+}*/

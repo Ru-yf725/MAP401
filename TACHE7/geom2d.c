@@ -56,6 +56,12 @@ Vecteur mult_scalaire(double r, Vecteur V)
   return R;
 }
 
+Point mult_Point(double k, Point P)
+{
+  Point p = {k * P.x, k * P.y};
+  return p;
+}
+
 // Retourne la norme du vecteur V donné en paramètre
 double norme_vecteur(Vecteur V)
 {

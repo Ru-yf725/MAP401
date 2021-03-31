@@ -1,0 +1,97 @@
+==============================================
+
+Fichier : IMAGES_TESTS/image_poly_tache6.pbm
+nombre de segments : 488
+nombre de contours : 3
+d = 1
+nombre de segments après simplification : 68
+
+==============================================
+
+Fichier : IMAGES_TESTS/image_poly_tache6.pbm
+nombre de segments : 488
+nombre de contours : 3
+d = 2
+nombre de segments après simplification : 44
+
+==============================================
+
+Fichier : IMAGES_TESTS/elephant-gotlib.pbm
+nombre de segments : 115564
+nombre de contours : 313
+d = 1
+nombre de segments après simplification : 13189
+
+==============================================
+
+Fichier : IMAGES_TESTS/elephant-gotlib.pbm
+nombre de segments : 115564
+nombre de contours : 313
+d = 2
+nombre de segments après simplification : 4281
+
+==============================================
+
+Fichier : IMAGES_TESTS/goudyini-A.pbm
+nombre de segments : 73444
+nombre de contours : 258
+d = 1
+nombre de segments après simplification : 5335
+
+==============================================
+
+Fichier : IMAGES_TESTS/goudyini-A.pbm
+nombre de segments : 73444
+nombre de contours : 258
+d = 2
+nombre de segments après simplification : 2713
+
+==============================================
+
+Fichier : IMAGES_TESTS/JoaquimHock-LesArbres.pbm
+nombre de segments : 231284
+nombre de contours : 543
+d = 1
+nombre de segments après simplification : 26572
+
+==============================================
+
+Fichier : IMAGES_TESTS/JoaquimHock-LesArbres.pbm
+nombre de segments : 231284
+nombre de contours : 543
+d = 2
+nombre de segments après simplification : 13090
+
+==============================================
+
+Fichier : IMAGES_TESTS/cheval.pbm
+nombre de segments : 32002
+nombre de contours : 59
+d = 1
+nombre de segments après simplification : 3157
+
+==============================================
+
+Fichier : IMAGES_TESTS/cheval.pbm
+nombre de segments : 32002
+nombre de contours : 59
+d = 2
+nombre de segments après simplification : 1381
+
+==============================================
+
+Fichier : IMAGES_TESTS/papillon2.pbm
+nombre de segments : 18212
+nombre de contours : 140
+d = 1
+nombre de segments après simplification : 1913
+
+==============================================
+
+Fichier : IMAGES_TESTS/papillon2.pbm
+nombre de segments : 18212
+nombre de contours : 140
+d = 2
+nombre de segments après simplification : 1037
+
+==============================================
