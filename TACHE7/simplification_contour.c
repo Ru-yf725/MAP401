@@ -23,7 +23,6 @@ Liste_Point simplification_douglas_peucker(Tableau_Point C, int j1, int j2, doub
   {
     
     ajouter_element_liste_Point(&L, C.tab[j1]);
-    //ajouter_element_liste_Point(&L, C.tab[j2]);
   }
   else
   {

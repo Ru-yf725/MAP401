@@ -119,36 +119,34 @@ Bezier2 approx_bezier2(Contour C, double n)
   B2.C0 = T.tab[0];
   B2.C2 = T.tab[C.taille-1];
 
-  B2.C1 = set_point(0,0);
+//  B2.C1 = set_point(0,0);
 
   if (n == 1)
   {
-    B2.C1 = add_point(T.tab[0],T.tab[1]);
-    B2.C1.x = B2.C1.x * 0.5;
-    B2.C1.y = B2.C1.y * 0.5;
+    B2.C1 = add_point(T.tab[0],T.tab[C.taille-1]);
+    B2.C1 = mult_Point(0.5,B2.C1);
   }
+
   else if (n >= 2)
   {
+
     double alpha = 3*n/(n*n-1);
+
     double beta = (1-2*n)/(2*(n+1));
 
-    Point Aux; // Auxiliary point
+    //printf("(alpha,beta) = (%lf, %lf)\n", alpha, beta);
     
-    Aux = add_point(T.tab[0],T.tab[1]);
+    // Aux : Auxilary Point
+    Point Aux = add_point(T.tab[0],T.tab[C.taille-1]); 
 
     Aux = mult_Point(beta, Aux);
 
-    //afficher_point(Aux);
-
     for (int i = 1 ; i <= (int)n-1 ; i++)
     {
-      //B2.C1 = add_point(B2.C1,T.tab[i]);
-        B2.C1.x += T.tab[i].x;
-        B2.C1.y += T.tab[i].y;
+        B2.C1 = add_point(B2.C1,T.tab[i]);
     }
 
-    B2.C1.x = alpha * B2.C1.x;
-    B2.C1.y = alpha * B2.C1.y;
+    B2.C1 = mult_Point(alpha, B2.C1);
 
     B2.C1 = add_point(B2.C1, Aux);
 
@@ -180,53 +178,117 @@ Point BEZIER_2(Bezier2 B, double t)
 
 int main(int argc, char** argv)
 {
-    Contour C;
 
-    Point Q0 = set_point(3,2);
-    Point Q1 = set_point(1,0);
-    Point Q2 = set_point(1,3);
+    Contour C = creer_liste_Point_vide();
 
-    Bezier2 B2, B2_bis;
-    B2 = add_bezier_2(Q0, Q1, Q2);
+    // Initialise les points 
+    Point Q0 = set_point(2,1);
+    Point Q1 = set_point(1,1);
+    Point Q2 = set_point(3,0);
 
-    
-    /*Point P1 = BEZIER_2(B2,1/2);
-    Point P2 = BEZIER_2(B2,1);*/
+    Bezier2 B = add_bezier_2(Q0, Q1, Q2);
 
+    // Ajout des points Q0, Q1, Q2 à B2 (Bezier de degré 2)
     Point P;
+    Bezier2 B2_approx;
 
-    int n;
-    scanf("%d", &n);
+    /*int n;
+    scanf("%d", &n);*/
+    int n = 5;
     
+    if (n == 1)
+    {
+        ajouter_element_liste_Point(&C,Q0);
+        ajouter_element_liste_Point(&C,Q1);
+        B2_approx = approx_bezier2(C,n);
+
+
+        printf("== CONTOUR POLYGONAL : ==\n");
+        ecrire_contour(C);
+
+        printf("== COURBE DE BEZIER 2 : ==\n");
+        afficher_point(B2_approx.C0);
+        afficher_point(B2_approx.C1);
+        afficher_point(B2_approx.C2);
+    }
+    else if (n >= 2)
+    {
+    // 
     for (int i = 0 ; i <= n ; i++)
     {
-        P = BEZIER_2(B2, (double)i / (double)n);
+        P = BEZIER_2(B, i / (double)n);
         ajouter_element_liste_Point(&C, P);
     }
 
-    B2_bis = approx_bezier2(C,n);
+    ecrire_contour(C);
 
-    printf("== BEZIER : ==\n");
+    B2_approx = approx_bezier2(C,n); // Courbe calculée
 
-    afficher_point(B2.C0);
-    afficher_point(B2.C1);
-    afficher_point(B2.C2);
+    printf("== CONTOUR POLYGONAL : ==\n");
+    afficher_point(B.C0);
+    afficher_point(B.C1);
+    afficher_point(B.C2);
 
-    printf("== B2 : ==\n");
-    afficher_point(B2_bis.C0);
-    afficher_point(B2_bis.C1);
-    afficher_point(B2_bis.C2);
+    //ecrire_contour(C);
 
-    //afficher_point(P0);
-    //afficher_point(P1);
-    //afficher_point(P2);
-    //Contour P;
-    //ajouter_element_liste_Point(&P, P0);
-    //ajouter_element_liste_Point(&P, P1);
-    //ajouter_element_liste_Point(&P, P2);
+    printf("== COURBE DE BEZIER 2 : ==\n");
+    afficher_point(B2_approx.C0);
+    afficher_point(B2_approx.C1);
+    afficher_point(B2_approx.C2);
+    
 
-    //ecrire_contour(P);
+    int d;
+    Image I;
+    Contour C;
+    Robot R;
+    Tableau_Point T;
+    Contour L;
 
+    I = lire_fichier_image(argv[1]);
+
+    sscanf(argv[2], "%d", &d);
+
+    Image M = mask_detection(I);
+    
+
+    Point PM = trouver_pixel_depart(M);
+    Point P0;
+
+    FILE* f = fopen("contour_simplifie_sortie.eps","w");
+
+    // Headers du fichier EPS 
+    fprintf(f, "%c!PS-Adobe-3.0 EPSF-3.0\n",'%');
+    fprintf(f, "%c%cBoundingBox: 0 0 %u %u\n",'%','%', I.L, I.H);
+    fprintf(f, "/l {lineto} def \n/m {moveto} def \n/s {stroke} def\n/f {fill} def\n");
+
+
+    do {
+
+        C = creer_liste_Point_vide();
+
+        det_contour(I, &M, P0, &R, &C);
+
+
+        PM = trouver_pixel_depart(M);
+
+        T = sequence_points_liste_vers_tableau(C);
+
+        L = simplification_douglas_peucker(T,0,C.taille-1,d);
+
+        ajouter_element_liste_Point(&L, L.first->data);
+
+        ecrire_contour(L);
+
+        convert_to_EPS_(L, 3, I, f);
+
+        } while (PM.x != -1 && PM.y != -1);
+
+
+    fprintf(f, "\nf\n");
+    fprintf(f, "\nshowpage\n");
+    fclose(f);  
+
+    }
 }
 
 /*int main(int argc, char** argv)
