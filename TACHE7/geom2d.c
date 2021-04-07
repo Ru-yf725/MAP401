@@ -126,3 +126,25 @@ double distance_point_segment(Point P, Point A, Point B)
     }
 }
 
+Point BEZIER_2(Bezier2 B, double t)
+{
+    Point A = mult_Point((1-t)*(1-t),B.C0);
+    Point C = mult_Point(2*t*(1-t),B.C1);
+    Point E = mult_Point(t*t, B.C2);
+    Point F;
+    F.x = A.x + C.x + E.x;
+    F.y = A.y + C.y + E.y;
+
+    return F;
+}
+
+double distance_point_bezier2(Point P, Bezier2 B, double ti)
+{
+  Point C_ti = BEZIER_2(B, ti);
+  //afficher_point(C_ti);
+  //Point O = set_point(0,0);
+
+  return distance(P, C_ti);
+
+}
+

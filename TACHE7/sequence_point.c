@@ -14,6 +14,7 @@ Cellule_Liste_Point *creer_element_liste_Point(Point v)
 		fprintf(stderr, "creer_element_liste_Point : allocation impossible\n");
 		exit(-1);
 	}
+	
 	el->data = v;
 	el->suiv = NULL;
 

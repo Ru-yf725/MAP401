@@ -45,4 +45,8 @@ double norme_vecteur(Vecteur V);
 /* Distance point segment */
 double distance_point_segment(Point P, Point A, Point B);
 
+Point BEZIER_2(Bezier2 B, double t);
+
+double distance_point_bezier2(Point P, Bezier2 B, double ti);
+
 #endif

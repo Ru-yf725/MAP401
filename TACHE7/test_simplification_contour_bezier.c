@@ -1,23 +1,6 @@
 #include <stdio.h>
 #include "simplification_contour.h"
-
-void afficher_tableau(Tableau_Point T)
-{
-	for (int i = 0 ; i < T.taille ; i++)
-	{
-		afficher_point(T.tab[i]);
-	}
-}
-
-void vider_tableau(Tableau_Point* T)
-{
-	Point P = {-1,-1};
-	for (int i = 0 ; i < T->taille ; i++)
-	{
-		T->tab[i] = P;
-	}
-	T->taille = 0;
-}
+#include "bezier.h"
 
 void convert_to_EPS_(Contour C, int mode, Image I, FILE* f)
 {
@@ -106,101 +89,147 @@ void convert_to_EPS_(Contour C, int mode, Image I, FILE* f)
             fprintf(f, "%.1f %.1f l %.1f %.1f l\n", previous_point.x, I.H-previous_point.y, current->suiv->data.x, I.H-current->suiv->data.y);
             current = current->suiv;
         }
+
+       // fprintf(f, "\n\nf\n");
+       // fprintf(f,"closepath\n\n");
     }
 }
-
-Bezier2 approx_bezier2(Contour C, double n)
-{
-
-  Tableau_Point T = sequence_points_liste_vers_tableau(C);
-
-  Bezier2 B2;
-
-  B2.C0 = T.tab[0];
-  B2.C2 = T.tab[C.taille-1];
-
-//  B2.C1 = set_point(0,0);
-
-  if (n == 1)
-  {
-    B2.C1 = add_point(T.tab[0],T.tab[C.taille-1]);
-    B2.C1 = mult_Point(0.5,B2.C1);
-  }
-
-  else if (n >= 2)
-  {
-
-    double alpha = 3*n/(n*n-1);
-
-    double beta = (1-2*n)/(2*(n+1));
-
-    //printf("(alpha,beta) = (%lf, %lf)\n", alpha, beta);
-    
-    // Aux : Auxilary Point
-    Point Aux = add_point(T.tab[0],T.tab[C.taille-1]); 
-
-    Aux = mult_Point(beta, Aux);
-
-    for (int i = 1 ; i <= (int)n-1 ; i++)
-    {
-        B2.C1 = add_point(B2.C1,T.tab[i]);
-    }
-
-    B2.C1 = mult_Point(alpha, B2.C1);
-
-    B2.C1 = add_point(B2.C1, Aux);
-
-  }
-
-  return B2;
-}
-
-/*Contour contour_poly(Contour C)
-{
-    Tableau_Point P = sequence_points_liste_vers_tableau(C);   
-
-}*/
-
-Point BEZIER_2(Bezier2 B, double t)
-{
-    return (add_point(add_point(
-            mult_Point((1-t)*(1-t),B.C0),
-            mult_Point(2*t*(1-t),B.C1)),
-            mult_Point(t*t, B.C2)));
-}
-
-/*Point BEZIER_3(Contour C, double t)
-{
-    Tableau_Point T = sequence_points_liste_vers_tableau(C);
-    
-    return ;
-}*/
 
 int main(int argc, char** argv)
 {
+   
+    int d;
+    Image I;
+    Contour C;
+    Robot R;
+    Tableau_Point T;
+    Contour L;
+    Bezier2 B;
+
+    I = lire_fichier_image(argv[1]);
+
+    sscanf(argv[2], "%d", &d);
+
+    Image M = mask_detection(I);
+    
+    Point PM = trouver_pixel_depart(M);
+    Point P0;
+
+    FILE* f = fopen("contour_simplifie_sortie.eps","w");
+    FILE* f_con = fopen("contour.txt.contours","w");
+
+    // Headers du fichier EPS 
+    fprintf(f, "%c!PS-Adobe-3.0 EPSF-3.0\n",'%');
+    fprintf(f, "%c%cBoundingBox: 0 0 %u %u\n",'%','%', I.L, I.H);
+    fprintf(f, "/l {lineto} def \n/m {moveto} def \n/s {stroke} def\n/f {fill} def\n");
+
+    int nombre_contours = 0;
+    int nombre_courbes = 0;
+
+   // do {
+
+        C = creer_liste_Point_vide();
+
+        /*Point Q0 = set_point(0,0);
+        Point Q1 = set_point(1,0);
+        Point Q2 = set_point(1,1);
+        Point Q3 = set_point(1,2);
+        Point Q4 = set_point(2,2);
+        Point Q5 = set_point(3,2);
+        Point Q6 = set_point(3,3);
+        Point Q7 = set_point(4,3);
+        Point Q8 = set_point(5,3);*/
+
+        det_contour(I, &M, P0, &R, &C);
+        // Quand on arrive ici, le contour C est rempli
+
+        /*ajouter_element_liste_Point(&C, Q0);
+        ajouter_element_liste_Point(&C, Q1);
+        ajouter_element_liste_Point(&C, Q2);
+        ajouter_element_liste_Point(&C, Q3);
+        ajouter_element_liste_Point(&C, Q4);
+        ajouter_element_liste_Point(&C, Q5);
+        ajouter_element_liste_Point(&C, Q6);
+        ajouter_element_liste_Point(&C, Q7);
+        ajouter_element_liste_Point(&C, Q8);*/
+
+        ecrire_contour(C);
+
+        ++nombre_contours;
+        //
+
+        PM = trouver_pixel_depart(M);
+
+        T = sequence_points_liste_vers_tableau(C);
+
+        //printf("->");
+        //afficher_point(T.tab[C.taille-1]);
+
+        L = simplification_douglas_peucker_bezier2(C,0,C.taille-1,d);
+
+        ajouter_element_liste_Point(&L, L.first->data);
+        
+        ecrire_contour(L);
+
+        convert_to_EPS_(L, 1, I, f);
+
+        //sauvegarder_contour(f_con, L);
+
+  //      } while (PM.x != -1 && PM.y != -1);
+
+    fprintf(f, "\nf\n");
+    fprintf(f, "\nshowpage\n");
+    fclose(f);
+
+    //printf("nombre de segments : %d\n", somme_segments_total);
+    printf("nombre de courbes : %d\n", nombre_courbes);
+    //printf("nombre de points : %d\n", nombre_de_points);
+    //printf("nombre de segments après simplification : %d\n", somme_segments_simpli);
+
+
+/*
+    //Contour C = creer_liste_Point_vide();
+
+    // Initialise les points 
+    
+    Point Q0 = set_point(0,0);
+    Point Q1 = set_point(1,0);
+    Point Q2 = set_point(1,1);
+    Point Q3 = set_point(1,2);
+    Point Q4 = set_point(2,2);
+    Point Q5 = set_point(3,2);
+    Point Q6 = set_point(3,3);
+    Point Q7 = set_point(4,3);
+    Point Q8 = set_point(5,3);
+    
+
+    //B = add_bezier_2(Q0, Q1, Q2);    
 
     Contour C = creer_liste_Point_vide();
 
-    // Initialise les points 
-    Point Q0 = set_point(2,1);
-    Point Q1 = set_point(1,1);
-    Point Q2 = set_point(3,0);
+    ajouter_element_liste_Point(&C, Q0);
+    ajouter_element_liste_Point(&C, Q1);
+    ajouter_element_liste_Point(&C, Q2);
+    ajouter_element_liste_Point(&C, Q3);
+    ajouter_element_liste_Point(&C, Q4);
+    ajouter_element_liste_Point(&C, Q5);
+    ajouter_element_liste_Point(&C, Q6);
+    ajouter_element_liste_Point(&C, Q7);
+    ajouter_element_liste_Point(&C, Q8);
 
-    Bezier2 B = add_bezier_2(Q0, Q1, Q2);
+    Tableau_Point T = sequence_points_liste_vers_tableau(C);
 
-    // Ajout des points Q0, Q1, Q2 à B2 (Bezier de degré 2)
     Point P;
     Bezier2 B2_approx;
 
-    /*int n;
-    scanf("%d", &n);*/
-    int n = 5;
+    int n = C.taille-1;
+
+    B2_approx = approx_bezier2(C, 0, C.taille-1);
     
     if (n == 1)
     {
-        ajouter_element_liste_Point(&C,Q0);
-        ajouter_element_liste_Point(&C,Q1);
-        B2_approx = approx_bezier2(C,n);
+        ajouter_element_liste_Point(&C,T.tab[0]);
+        ajouter_element_liste_Point(&C,T.tab[1]);
 
 
         printf("== CONTOUR POLYGONAL : ==\n");
@@ -213,152 +242,54 @@ int main(int argc, char** argv)
     }
     else if (n >= 2)
     {
-    // 
+    
     for (int i = 0 ; i <= n ; i++)
     {
-        P = BEZIER_2(B, i / (double)n);
+        P = BEZIER_2(B2_approx, i / (double)n);
         ajouter_element_liste_Point(&C, P);
     }
 
+    //B2_approx = approx_bezier2(C,0,C.taille-1); // Courbe calculée
+
+    printf("== BEZIER 2 : ==\n");
+    //afficher_point(B.C0);
+    //afficher_point(B.C1);
+    //afficher_point(B.C2);
+
     ecrire_contour(C);
-
-    B2_approx = approx_bezier2(C,n); // Courbe calculée
-
-    printf("== CONTOUR POLYGONAL : ==\n");
-    afficher_point(B.C0);
-    afficher_point(B.C1);
-    afficher_point(B.C2);
-
-    //ecrire_contour(C);
 
     printf("== COURBE DE BEZIER 2 : ==\n");
     afficher_point(B2_approx.C0);
     afficher_point(B2_approx.C1);
     afficher_point(B2_approx.C2);
-    
-
-    int d;
-    Image I;
-    Contour C;
-    Robot R;
-    Tableau_Point T;
-    Contour L;
-
-    I = lire_fichier_image(argv[1]);
-
-    sscanf(argv[2], "%d", &d);
-
-    Image M = mask_detection(I);
-    
-
-    Point PM = trouver_pixel_depart(M);
-    Point P0;
-
-    FILE* f = fopen("contour_simplifie_sortie.eps","w");
-
-    // Headers du fichier EPS 
-    fprintf(f, "%c!PS-Adobe-3.0 EPSF-3.0\n",'%');
-    fprintf(f, "%c%cBoundingBox: 0 0 %u %u\n",'%','%', I.L, I.H);
-    fprintf(f, "/l {lineto} def \n/m {moveto} def \n/s {stroke} def\n/f {fill} def\n");
-
-
-    do {
-
-        C = creer_liste_Point_vide();
-
-        det_contour(I, &M, P0, &R, &C);
-
-
-        PM = trouver_pixel_depart(M);
-
-        T = sequence_points_liste_vers_tableau(C);
-
-        L = simplification_douglas_peucker(T,0,C.taille-1,d);
-
-        ajouter_element_liste_Point(&L, L.first->data);
-
-        ecrire_contour(L);
-
-        convert_to_EPS_(L, 3, I, f);
-
-        } while (PM.x != -1 && PM.y != -1);
-
-
-    fprintf(f, "\nf\n");
-    fprintf(f, "\nshowpage\n");
-    fclose(f);  
-
     }
+    */
+    
+    /*
+
+    Point Q0 = set_point(0,0);
+    Point Q1 = set_point(1,0);
+    Point Q2 = set_point(1,1);
+    Point Q3 = set_point(1,2);
+    Point Q4 = set_point(2,2);
+    Point Q5 = set_point(3,2);
+    Point Q6 = set_point(3,3);
+    Point Q7 = set_point(4,3);
+    Point Q8 = set_point(5,3);
+
+    Contour C = creer_liste_Point_vide();
+    ajouter_element_liste_Point(&C, Q0);
+    ajouter_element_liste_Point(&C, Q1);
+    ajouter_element_liste_Point(&C, Q2);
+    ajouter_element_liste_Point(&C, Q3);
+    ajouter_element_liste_Point(&C, Q4);
+    ajouter_element_liste_Point(&C, Q5);
+    ajouter_element_liste_Point(&C, Q6);
+    ajouter_element_liste_Point(&C, Q7);
+    ajouter_element_liste_Point(&C, Q8);
+
+    Bezier2 B2_approx = approx_bezier2(C, 0, C.taille-1);
+    afficher_point(B2_approx.C1);
+    */
+
 }
-
-/*int main(int argc, char** argv)
-{
-	int d;
-	Image I;
-	Contour C;
-	Robot R;
-	Tableau_Point T;
-	Contour L;
-
-	I = lire_fichier_image(argv[1]);
-
-	sscanf(argv[2], "%d", &d);
-
-	Image M = mask_detection(I);
-	
-
-	Point PM = trouver_pixel_depart(M);
-	Point P0;
-
-	FILE* f = fopen("contour_simplifie_sortie.eps","w");
-
-	// Headers du fichier EPS 
-    fprintf(f, "%c!PS-Adobe-3.0 EPSF-3.0\n",'%');
-    fprintf(f, "%c%cBoundingBox: 0 0 %u %u\n",'%','%', I.L, I.H);
-    fprintf(f, "/l {lineto} def \n/m {moveto} def \n/s {stroke} def\n/f {fill} def\n");
-
-    int nombre_contours = 0;
-    int somme_segments_total = 0;
-    int somme_segments_simpli = 0;
-    int nombre_de_points = 0;
-
-
-	do {
-
-		C = creer_liste_Point_vide();
-
-		det_contour(I, &M, P0, &R, &C);
-
-		++nombre_contours;
-		somme_segments_total += C.taille-1;
-		nombre_de_points += C.taille;
-
-        PM = trouver_pixel_depart(M);
-
-        T = sequence_points_liste_vers_tableau(C);
-
-        L = simplification_douglas_peucker(T,0,C.taille-1,d);
-
-        ajouter_element_liste_Point(&L, L.first->data);
-
-        somme_segments_simpli += L.taille-1;
-
-        ecrire_contour(L);
-
-        convert_to_EPS_(L, 3, I, f);
-
- 		//sauvegarder_contour(f_con, L);
-
-    	} while (PM.x != -1 && PM.y != -1);
-
-
-    fprintf(f, "\nf\n");
-    fprintf(f, "\nshowpage\n");
-    fclose(f);
-
-    printf("nombre de segments : %d\n", somme_segments_total);
-    printf("nombre de contours : %d\n", nombre_contours);
-    //printf("nombre de points : %d\n", nombre_de_points);
-    printf("nombre de segments après simplification : %d\n", somme_segments_simpli);
-
-}*/
