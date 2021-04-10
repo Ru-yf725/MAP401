@@ -38,7 +38,7 @@ COMPILOPTS = -g -Wall $(INCLUDEOPTS)
 
 # liste des executables
 # EXECUTABLES = test_image test_geom2d
-EXECUTABLES = test_geom2d test_contour test_simplification_contour_bezier
+EXECUTABLES = test_geom2d test_contour prog-test test_simplification_contour_bezier
 
 #############################################################################
 # definition des regles
@@ -78,13 +78,13 @@ test_image.o : test_image.c image.h
 	$(CC) -c $(COMPILOPTS) $<
 
 test_geom2d.o: test_geom2d.c types.h
-	$(CC) -c $<
+	$(CC) -c $< 
 
 geom2d.o: geom2d.c geom2d.h
-	$(CC) -c $<
+	$(CC) -c $< 
 
 test_contour.o: test_contour.c types.h image.h
-	$(CC) -c $<
+	$(CC) -c $< 
 
 sequence_point.o: sequence_point.c types.h
 	$(CC) -c $<
@@ -107,8 +107,11 @@ test_geom2d: geom2d.o test_geom2d.o
 
 test_contour: contour.o test_contour.o image.o sequence_point.o
 	clang $^ -o $@
-
+	
 test_simplification_contour_bezier: test_simplification_contour_bezier.o geom2d.o sequence_point.o image.o contour.o simplification_contour.o
+	clang $^ -o $@
+
+prog-test: prog-test.o simplification_contour.o geom2d.o sequence_point.o image.o contour.o
 	clang $^ -o $@
 
 # regle pour "nettoyer" le répertoire

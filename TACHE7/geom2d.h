@@ -45,8 +45,15 @@ double norme_vecteur(Vecteur V);
 /* Distance point segment */
 double distance_point_segment(Point P, Point A, Point B);
 
+/* Calcul le point correspondant à une valeur réelle t incluse
+ dans l'intervalle [0,1] à partir de l'équation polynomiale
+ de Bezier de degré 3*/
 Point BEZIER_2(Bezier2 B, double t);
 
+/* Calcul la distance en un point et une Bézier de degré 2 */
 double distance_point_bezier2(Point P, Bezier2 B, double ti);
+
+/* Calcul la distance en un point et une Bézier de degré 3 */
+double distance_point_bezier3(Point P, Bezier3 B, double ti);
 
 #endif

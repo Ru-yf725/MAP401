@@ -65,7 +65,7 @@ Point mult_Point(double k, Point P)
 // Retourne la norme du vecteur V donné en paramètre
 double norme_vecteur(Vecteur V)
 {
-  return sqrt(V.x*V.x+V.y*V.y);
+  return sqrtf(V.x*V.x+V.y*V.y);
 }
 
 double produit_scalaire(Vecteur V1, Vecteur V2)
@@ -128,23 +128,44 @@ double distance_point_segment(Point P, Point A, Point B)
 
 Point BEZIER_2(Bezier2 B, double t)
 {
-    Point A = mult_Point((1-t)*(1-t),B.C0);
-    Point C = mult_Point(2*t*(1-t),B.C1);
-    Point E = mult_Point(t*t, B.C2);
-    Point F;
-    F.x = A.x + C.x + E.x;
-    F.y = A.y + C.y + E.y;
+    return (add_point(add_point(
+            mult_Point((1-t)*(1-t),B.C0),
+            mult_Point(2*t*(1-t),B.C1)),
+            mult_Point(t*t, B.C2))); 
+}
 
-    return F;
+Point BEZIER_3(Bezier3 B, double t)
+{
+    // Point Auxiliaire
+    Point Aux = add_point(mult_Point(
+                3*t*(1-t)*(1-t),B.C1),
+                mult_Point(3*t*t*(1-t),B.C2));
+    Aux = add_point(Aux, mult_Point(t*t*t, B.C3));
+    return (add_point(mult_Point(pow((1-t),3),B.C0), Aux));
 }
 
 double distance_point_bezier2(Point P, Bezier2 B, double ti)
 {
   Point C_ti = BEZIER_2(B, ti);
-  //afficher_point(C_ti);
-  //Point O = set_point(0,0);
-
   return distance(P, C_ti);
+}
 
+Bezier3 Bezier2_to_Bezier3(Bezier2 B2)
+{
+  Bezier3 B3;
+
+  B3.C0 = B2.C0;
+  B3.C1 = mult_Point(1.0/3,add_point(B2.C0,mult_Point(2.0, B2.C1)));
+  B3.C2 = mult_Point(1.0/3,add_point(B2.C2,mult_Point(2.0, B2.C1)));
+  B3.C3 = B2.C2;
+
+  return B3;
+}
+
+
+double distance_point_bezier3(Point P, Bezier3 B, double ti)
+{
+  Point C_ti = BEZIER_3(B, ti);
+  return distance(P, C_ti);
 }
 

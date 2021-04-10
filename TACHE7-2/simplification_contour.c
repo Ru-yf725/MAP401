@@ -117,11 +117,12 @@ Liste_Point simplification_douglas_peucker_bezier2(Contour C, int j1, int j2, do
 
   if (dmax <= d)
   { 
-    for (int i = 0 ; i <= n ; i++)
+    /*for (int i = 0 ; i <= n ; i++)
     {
       Point P = BEZIER_2(B, i/(double)n);
       ajouter_element_liste_Point(&L, P);
-    }
+    }*/
+    
 
   }
 

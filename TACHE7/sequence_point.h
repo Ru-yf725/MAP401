@@ -17,7 +17,7 @@ typedef struct Liste_Point_
   Cellule_Liste_Point *first; /* pointeur sur le premier élément de la liste */
   Cellule_Liste_Point *last;  /* pointeur sur le dernier élément de la liste */
                          /* first = last = NULL et taille = 0 <=> liste vide */
-  //int n; // Nombre de courbes
+  int n; // Nombre de courbes
 } Liste_Point;
 
 typedef Liste_Point Contour; /* type Contour = type Liste_Point */
