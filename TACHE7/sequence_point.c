@@ -126,7 +126,7 @@ void ecrire_contour(Liste_Point L)
 	free(TP.tab); /* supprimer le tableau de point TP */
 }
 
-Bezier2 add_bezier_2(Point Q0, Point Q1, Point Q2)
+/*Bezier2 add_bezier_2(Point Q0, Point Q1, Point Q2)
 {
 	Bezier2 B2;
 
@@ -135,9 +135,6 @@ Bezier2 add_bezier_2(Point Q0, Point Q1, Point Q2)
 	B2.C2 = Q2;
 
 	return B2;
-}
-
-
-
+}*/
 
 

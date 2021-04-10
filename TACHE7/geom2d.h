@@ -53,6 +53,8 @@ Point BEZIER_2(Bezier2 B, double t);
 /* Calcul la distance en un point et une Bézier de degré 2 */
 double distance_point_bezier2(Point P, Bezier2 B, double ti);
 
+Bezier3 Bezier2_to_Bezier3(Bezier2 B2);
+
 /* Calcul la distance en un point et une Bézier de degré 3 */
 double distance_point_bezier3(Point P, Bezier3 B, double ti);
 

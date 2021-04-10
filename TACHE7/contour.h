@@ -42,12 +42,13 @@ void sauvegarder_contour(FILE* f, Contour C);
 /* retourne les pixels avant gauche et avant droite du robot */
 void pixel_devant_robot(Robot r, Image I, Pixel *a_g, Pixel *a_d);
 
+/* Permet de créer un fichier EPS à partir d'un contour et du pointeur fichier */
 void convert_to_EPS(Contour C, int mode, Image I, FILE* f);
 
+/* Detecter le mask d'une image */
 Image mask_detection(Image I);
 
+/* Determiner le contour d'une image */
 void det_contour(Image I, Image* M, Point P0, Robot* R, Contour* C);
-
-Liste_Point simplification_douglas_peucker(Tableau_Point C, int j1, int j2, double d);
 
 #endif /* _CONTOUR_IMAGE_H_ */

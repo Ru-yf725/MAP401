@@ -92,6 +92,7 @@ Liste_Point simplification_douglas_peucker_bezier2(Contour C, int j1, int j2, do
   L = creer_liste_Point_vide();
   L1 = creer_liste_Point_vide();
   L2 = creer_liste_Point_vide();
+  Bezier3 B3;
 
   int n = j2-j1;
 
@@ -119,17 +120,22 @@ Liste_Point simplification_douglas_peucker_bezier2(Contour C, int j1, int j2, do
   { 
     L.n = 1;
 
-    for (int i = 0 ; i <= n ; i++)
+    /*for (int i = 0 ; i <= n ; i++)
     {
       Point P = BEZIER_2(B, i/(double)n);
       ajouter_element_liste_Point(&L, P);
-    }
+    }*/
+    B3 = Bezier2_to_Bezier3(B);
+
+    ajouter_element_liste_Point(&L, B3.C0);
+    ajouter_element_liste_Point(&L, B3.C1);
+    ajouter_element_liste_Point(&L, B3.C2);
+    ajouter_element_liste_Point(&L, B3.C3);
 
   }
 
   else
   {
-
     L1 = simplification_douglas_peucker_bezier2(C, j1, k, d);
     L2 = simplification_douglas_peucker_bezier2(C, k, j2, d);
 
@@ -176,6 +182,8 @@ Bezier3 approx_bezier3(Contour C, int j1, int j2)
 
   else if (n >= 3)
   {
+    // Expression de alpha, beta, lambda
+
     double alpha = ((-15)*pow(n,3)+5*n*n+2*n+4)/(3*(n+2)*(3*n*n+1));
 
     double beta = (10*pow(n,3)-15*n*n+n+2)/(3*(n+2)*(3*n*n+1));
@@ -206,9 +214,9 @@ Bezier3 approx_bezier3(Contour C, int j1, int j2)
   }
 
   for (int i = 1 ; i < n ; i++)
-    {
+  {
       printf("dist = %lf\n", distance_point_bezier3(T.tab[i], B3, (double) i/n));
-    }
+  }
 
   return B3;
 }
