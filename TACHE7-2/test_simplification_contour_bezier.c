@@ -107,15 +107,8 @@ void convert_to_EPS_cubic(Contour C, int mode, Image I, FILE* f)
         return;
     }
 
-//    Tableau_Point T = sequence_points_liste_vers_tableau(C);
-
-    /* Headers du fichier EPS */
-    fprintf(f, "%c!PS-Adobe-3.0 EPSF-3.0\n",'%');
-    fprintf(f, "%c%cBoundingBox: 0 0 %u %u\n",'%','%', I.L, I.H);
-    fprintf(f, "/l {lineto} def \n/m {moveto} def \n/s {stroke} def\n/f {fill} def\n/c {curveto} def");
-
     // Cellule d'itération
-    Cellule_Liste_Point* current = C.first->suiv; 
+    Cellule_Liste_Point* current = C.first->suiv->suiv->suiv->suiv; 
 
     if (mode == 1) // Mode contour avec segments
     {
@@ -123,14 +116,14 @@ void convert_to_EPS_cubic(Contour C, int mode, Image I, FILE* f)
 
         fprintf(f, "%.1f %.1f m %.1f %.1f %.1f %.1f %.1f %.1f c\n", C.first->data.x, I.H-C.first->data.y, C.first->suiv->data.x, I.H-C.first->suiv->data.y, C.first->suiv->suiv->data.x, I.H-C.first->suiv->suiv->data.y, C.first->suiv->suiv->suiv->data.x, I.H-C.first->suiv->suiv->suiv->data.y);
 
-        Point previous_point;
+        //Point previous_point;
 
-        while (current->suiv != NULL)
+        /*while (current->suiv != NULL)
         {
-            previous_point = current->data;
-            fprintf(f, "%.1f %.1f l %.1f %.1f %.1f %.1f %.1f %.1f c\n", previous_point.x, I.H-previous_point.y, current->suiv->data.x, I.H-current->suiv->data.y, current->suiv->suiv->data.x, I.H-current->suiv->suiv->data.y, current->suiv->suiv->suiv->data.x, I.H-current->suiv->suiv->suiv->data.y);
-            current = current->suiv;
-        }
+            //previous_point = current->data;
+            fprintf(f, "%.1f %.1f l %.1f %.1f %.1f %.1f %.1f %.1f c\n", current->data.x, I.H-current->data.y, current->suiv->data.x, I.H-current->suiv->data.y, current->suiv->suiv->data.x, I.H-current->suiv->suiv->data.y, current->suiv->suiv->suiv->data.x, I.H-current->suiv->suiv->suiv->data.y);
+            current = current->suiv->suiv->suiv;
+        }*/
 
         fprintf(f, "\n0 setlinewidth\ns\n");
 
@@ -199,7 +192,7 @@ void convert_to_EPS_cubic(Contour C, int mode, Image I, FILE* f)
 
 int main(int argc, char** argv)
 {
-/*
+
     int d;
     Image I;
     Contour C;
@@ -222,7 +215,7 @@ int main(int argc, char** argv)
     // Headers du fichier EPS 
     fprintf(f, "%c!PS-Adobe-3.0 EPSF-3.0\n",'%');
     fprintf(f, "%c%cBoundingBox: 0 0 %u %u\n",'%','%', I.L, I.H);
-    fprintf(f, "/l {lineto} def \n/m {moveto} def \n/s {stroke} def\n/f {fill} def\n");
+    fprintf(f, "/l {lineto} def \n/m {moveto} def \n/s {stroke} def\n/f {fill} def\n/c {curveto} def\n");
 
     int nombre_contours = 0;
     int nombre_courbes = 0;
@@ -231,50 +224,30 @@ int main(int argc, char** argv)
 
         C = creer_liste_Point_vide();
 
-        Point Q0 = set_point(0,0);
-        Point Q1 = set_point(1,0);
-        Point Q2 = set_point(1,1);
-        Point Q3 = set_point(1,2);
-        Point Q4 = set_point(2,2);
-        Point Q5 = set_point(3,2);
-        Point Q6 = set_point(3,3);
-        Point Q7 = set_point(4,3);
-        Point Q8 = set_point(5,3);
-
         det_contour(I, &M, P0, &R, &C);
         // Quand on arrive ici, le contour C est rempli
 
-        //ajouter_element_liste_Point(&C, Q0);
-        //ajouter_element_liste_Point(&C, Q1);
-        //ajouter_element_liste_Point(&C, Q2);
-        //ajouter_element_liste_Point(&C, Q3);
-        //ajouter_element_liste_Point(&C, Q4);
-        //ajouter_element_liste_Point(&C, Q5);
-        //ajouter_element_liste_Point(&C, Q6);
-        //ajouter_element_liste_Point(&C, Q7);
-        //ajouter_element_liste_Point(&C, Q8);
-
-        ecrire_contour(C);
+        //ecrire_contour(C);
 
         ++nombre_contours;
-        
 
         PM = trouver_pixel_depart(M);
 
         T = sequence_points_liste_vers_tableau(C);
 
-        //printf("->");
-        //afficher_point(T.tab[C.taille-1]);
-
-        L = simplification_douglas_peucker_bezier2(C,0,C.taille-1,d);
+        L = simplification_douglas_peucker_bezier3(C,0,C.taille-1,d);
 
         //ajouter_element_liste_Point(&L, L.first->data);
 
         ecrire_contour(L);
 
-        convert_to_EPS_(L, 1, I, f);
+        //convert_to_EPS_(L, 3, I, f);
+
+        convert_to_EPS_cubic(L, 1, I, f);
 
         //sauvegarder_contour(f_con, L);
+
+        nombre_courbes += L.n;
 
         } while (PM.x != -1 && PM.y != -1);
 
@@ -282,145 +255,7 @@ int main(int argc, char** argv)
     fprintf(f, "\nshowpage\n");
     fclose(f);
 
-    //printf("nombre de segments : %d\n", somme_segments_total);
     printf("nombre de courbes : %d\n", nombre_courbes);
-    //printf("nombre de points : %d\n", nombre_de_points);
-    //printf("nombre de segments après simplification : %d\n", somme_segments_simpli);
-
-*/
-
-    //Contour C = creer_liste_Point_vide();
-
-    // Initialise les points 
-/*
-    Point Q0 = set_point(0,0);
-    Point Q1 = set_point(1,0);
-    Point Q2 = set_point(1,1);
-    Point Q3 = set_point(1,2);
-    Point Q4 = set_point(2,2);
-    Point Q5 = set_point(3,2);
-    Point Q6 = set_point(3,3);
-    Point Q7 = set_point(4,3);
-    Point Q8 = set_point(5,3);
-    
-    Contour C = creer_liste_Point_vide();
-
-    ajouter_element_liste_Point(&C, Q0);
-    ajouter_element_liste_Point(&C, Q1);
-    ajouter_element_liste_Point(&C, Q2);
-    ajouter_element_liste_Point(&C, Q3);
-    ajouter_element_liste_Point(&C, Q4);
-    ajouter_element_liste_Point(&C, Q5);
-    ajouter_element_liste_Point(&C, Q6);
-    ajouter_element_liste_Point(&C, Q7);
-    ajouter_element_liste_Point(&C, Q8);
-
-    Tableau_Point T = sequence_points_liste_vers_tableau(C);
-
-    Point P;
-    Bezier2 B2_approx;
-
-    int n = C.taille-1;
-
-    B2_approx = approx_bezier2(C, 0, C.taille-1);
-    
-    if (n == 1)
-    {
-        ajouter_element_liste_Point(&C,T.tab[0]);
-        ajouter_element_liste_Point(&C,T.tab[1]);
-
-
-        printf("== CONTOUR POLYGONAL : ==\n");
-        ecrire_contour(C);
-
-        printf("== COURBE DE BEZIER 2 : ==\n");
-        afficher_point(B2_approx.C0);
-        afficher_point(B2_approx.C1);
-        afficher_point(B2_approx.C2);
-    }
-    else if (n >= 2)
-    {
-    
-    for (int i = 0 ; i <= n ; i++)
-    {
-        P = BEZIER_2(B2_approx, i / (double)n);
-        ajouter_element_liste_Point(&C, P);
-    }
-
-    //B2_approx = approx_bezier2(C,0,C.taille-1); // Courbe calculée
-
-    printf("== BEZIER 2 : ==\n");
-    //afficher_point(B.C0);
-    //afficher_point(B.C1);
-    //afficher_point(B.C2);
-
-    ecrire_contour(C);
-
-    printf("== COURBE DE BEZIER 2 : ==\n");
-    afficher_point(B2_approx.C0);
-    afficher_point(B2_approx.C1);
-    afficher_point(B2_approx.C2);
-    }
-    */
-    /*
-
-    Point Q0 = set_point(0,0);
-    Point Q1 = set_point(1,0);
-    Point Q2 = set_point(1,1);
-    Point Q3 = set_point(1,2);
-    Point Q4 = set_point(2,2);
-    Point Q5 = set_point(3,2);
-    Point Q6 = set_point(3,3);
-    Point Q7 = set_point(4,3);
-    Point Q8 = set_point(5,3);
-
-    Contour C = creer_liste_Point_vide();
-    ajouter_element_liste_Point(&C, Q0);
-    ajouter_element_liste_Point(&C, Q1);
-    ajouter_element_liste_Point(&C, Q2);
-    ajouter_element_liste_Point(&C, Q3);
-    ajouter_element_liste_Point(&C, Q4);
-    ajouter_element_liste_Point(&C, Q5);
-    ajouter_element_liste_Point(&C, Q6);
-    ajouter_element_liste_Point(&C, Q7);
-    ajouter_element_liste_Point(&C, Q8);
-
-    Bezier2 B2_approx = approx_bezier2(C, 0, C.taille-1);
-    afficher_point(B2_approx.C1);
-    */
-/*
-Contour C = creer_liste_Point_vide();
-
-    Point Q0 = set_point(0,0);
-    Point Q1 = set_point(1,0);
-    Point Q2 = set_point(1,1);
-    Point Q3 = set_point(1,2);
-    Point Q4 = set_point(2,2);
-    Point Q5 = set_point(3,2);
-    Point Q6 = set_point(3,3);
-    Point Q7 = set_point(4,3);
-    Point Q8 = set_point(5,3);
-
-    ajouter_element_liste_Point(&C, Q0);
-    ajouter_element_liste_Point(&C, Q1);
-    ajouter_element_liste_Point(&C, Q2);
-    ajouter_element_liste_Point(&C, Q3);
-    ajouter_element_liste_Point(&C, Q4);
-    ajouter_element_liste_Point(&C, Q5);
-    ajouter_element_liste_Point(&C, Q6);
-    ajouter_element_liste_Point(&C, Q7);
-    ajouter_element_liste_Point(&C, Q8);
-
-    Bezier3 B3 = approx_bezier3(C, 0, 8);
-
-    printf("== Contour C : ==\n");
-    ecrire_contour(C);
-
-    printf("== COURBE DE BEZIER 3 : ==\n");
-    afficher_point(B3.C0);
-    afficher_point(B3.C1);
-    afficher_point(B3.C2);
-    afficher_point(B3.C3);
-    */
+    printf("nombre de contours : %d\n", nombre_contours);
 
 }

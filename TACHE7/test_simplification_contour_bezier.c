@@ -232,11 +232,12 @@ int main(int argc, char** argv)
         T = sequence_points_liste_vers_tableau(C);
 
         L = simplification_douglas_peucker_bezier2(C,0,C.taille-1,d);
-        ajouter_element_liste_Point(&L, L.first->data);
+        
+        //ajouter_element_liste_Point(&L, L.first->data);
 
-        ecrire_contour(L);
+        //ecrire_contour(L);
         //convert_to_EPS_(L, 3, I, f);
-        convert_to_EPS_cubic(L, 3, I, f);
+        convert_to_EPS_cubic(L, 1, I, f);
 
         sauvegarder_contour(f_con, L);
 

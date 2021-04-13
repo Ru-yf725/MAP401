@@ -92,6 +92,7 @@ Liste_Point simplification_douglas_peucker_bezier2(Contour C, int j1, int j2, do
   L = creer_liste_Point_vide();
   L1 = creer_liste_Point_vide();
   L2 = creer_liste_Point_vide();
+  Bezier2 B2;
 
   int n = j2-j1;
 
@@ -117,13 +118,15 @@ Liste_Point simplification_douglas_peucker_bezier2(Contour C, int j1, int j2, do
 
   if (dmax <= d)
   { 
+  	ajouter_element_liste_Point(&L, B2.C0);
+  	ajouter_element_liste_Point(&L, B2.C1);
+  	ajouter_element_liste_Point(&L, B2.C2);
+
     /*for (int i = 0 ; i <= n ; i++)
     {
       Point P = BEZIER_2(B, i/(double)n);
       ajouter_element_liste_Point(&L, P);
     }*/
-    
-
   }
 
   else
@@ -172,6 +175,9 @@ Liste_Point simplification_douglas_peucker_bezier3(Contour C, int j1, int j2, do
 
   if (dmax <= d)
   { 
+
+  	L.n = 1;
+    printf("ZOZ\n");
     ajouter_element_liste_Point(&L, B.C0);
     ajouter_element_liste_Point(&L, B.C1);
     ajouter_element_liste_Point(&L, B.C2);
@@ -187,13 +193,13 @@ Liste_Point simplification_douglas_peucker_bezier3(Contour C, int j1, int j2, do
 
   else
   {
-
     L1 = simplification_douglas_peucker_bezier2(C, j1, k, d);
     L2 = simplification_douglas_peucker_bezier2(C, k, j2, d);
 
     L = concatener_liste_Point(L1, L2);
+    L.n = L1.n + L2.n;
   }
-
+  
   return L;
 }
 
@@ -214,23 +220,15 @@ Bezier3 approx_bezier3(Contour C, int j1, int j2)
   B3.C0 = T.tab[j1];
   B3.C3 = T.tab[j2];
 
-  if (n == 1)
+  if (n < 3)
   {
-    //B3.C0 = T.tab[0];
-    B3.C1 = mult_Point(1.0/3, add_point(T.tab[1], mult_Point(2, T.tab[0])));
-    B3.C2 = mult_Point(1.0/3, add_point(T.tab[0],mult_Point(2, T.tab[1])));
-    //B3.C3 = T.tab[1];
+   // B3.C1 = mult_Point(1.0/3, add_point(T.tab[1],mult_Point(2, T.tab[0])));
+   // B3.C2 = mult_Point(1.0/3, add_point(T.tab[1],mult_Point(2, T.tab[0])));
+  	Bezier2 B2 = approx_bezier2(C,j1,j2);
+  	B3 = Bezier2_to_Bezier3(B2);
   }
 
-  else if (n == 2)
-  {
-    //B3.C0 = T.tab[0];
-    B3.C1 = mult_Point(1.0/3, add_point(T.tab[1],mult_Point(2, T.tab[0])));
-    B3.C2 = mult_Point(1.0/3, add_point(T.tab[1],mult_Point(2, T.tab[0])));
-    //B3.C3 = T.tab[2];
-  }
-
-  else if (n >= 3)
+  else
   {
     double alpha = ((-15)*pow(n,3)+5*n*n+2*n+4)/(3*(n+2)*(3*n*n+1));
 

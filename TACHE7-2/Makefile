@@ -38,7 +38,7 @@ COMPILOPTS = -g -Wall $(INCLUDEOPTS)
 
 # liste des executables
 # EXECUTABLES = test_image test_geom2d
-EXECUTABLES = test_geom2d test_contour test_simplification_contour_bezier
+EXECUTABLES = test_simplification_contour_bezier prog-test
 
 #############################################################################
 # definition des regles
@@ -111,6 +111,8 @@ test_contour: contour.o test_contour.o image.o sequence_point.o
 test_simplification_contour_bezier: test_simplification_contour_bezier.o geom2d.o sequence_point.o image.o contour.o simplification_contour.o
 	clang $^ -o $@
 
+prog-test: prog-test.o simplification_contour.o geom2d.o sequence_point.o image.o contour.o
+	clang $^ -o $@
 # regle pour "nettoyer" le répertoire
 clean:
 	rm -fR $(EXECUTABLES) output.pbm *.o 

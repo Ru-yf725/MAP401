@@ -47,6 +47,10 @@ double distance_point_segment(Point P, Point A, Point B);
 
 Point BEZIER_2(Bezier2 B, double t);
 
+Bezier3 Bezier2_to_Bezier3(Bezier2 B2);
+
+Point BEZIER_3(Bezier3 B, double t);
+
 double distance_point_bezier2(Point P, Bezier2 B, double ti);
 
 double distance_point_bezier3(Point P, Bezier3 B, double ti);
