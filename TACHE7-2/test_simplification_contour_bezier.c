@@ -15,7 +15,7 @@ void convert_to_EPS_(Contour C, int mode, Image I, FILE* f)
     fprintf(f, "/l {lineto} def \n/m {moveto} def \n/s {stroke} def\n/f {fill} def\n");
 
     // Cellule d'itération
-    Cellule_Liste_Point* current = C.first->suiv; 
+    Cellule_Liste_Point* current = C.first->suiv->suiv->suiv->suiv; 
 
     if (mode == 1) // Mode contour avec segments
     {
@@ -25,11 +25,11 @@ void convert_to_EPS_(Contour C, int mode, Image I, FILE* f)
 
         Point previous_point;
 
-        while (current->suiv != NULL)
+        while (current != NULL)
         {
             previous_point = current->data;
             fprintf(f, "%.1f %.1f l %.1f %.1f l\n", previous_point.x, I.H-previous_point.y, current->suiv->data.x, I.H-current->suiv->data.y);
-            current = current->suiv;
+            current = current->suiv->suiv->suiv->suiv;
         }
 
 
@@ -118,12 +118,12 @@ void convert_to_EPS_cubic(Contour C, int mode, Image I, FILE* f)
 
         //Point previous_point;
 
-        /*while (current->suiv != NULL)
+        while (current != NULL)
         {
             //previous_point = current->data;
             fprintf(f, "%.1f %.1f l %.1f %.1f %.1f %.1f %.1f %.1f c\n", current->data.x, I.H-current->data.y, current->suiv->data.x, I.H-current->suiv->data.y, current->suiv->suiv->data.x, I.H-current->suiv->suiv->data.y, current->suiv->suiv->suiv->data.x, I.H-current->suiv->suiv->suiv->data.y);
-            current = current->suiv->suiv->suiv;
-        }*/
+            current = current->suiv->suiv->suiv->suiv;
+        }
 
         fprintf(f, "\n0 setlinewidth\ns\n");
 
@@ -235,7 +235,7 @@ int main(int argc, char** argv)
 
         T = sequence_points_liste_vers_tableau(C);
 
-        L = simplification_douglas_peucker_bezier3(C,0,C.taille-1,d);
+        L = simplification_douglas_peucker_bezier2(C,0,C.taille-1,d);
 
         //ajouter_element_liste_Point(&L, L.first->data);
 

@@ -92,11 +92,12 @@ Liste_Point simplification_douglas_peucker_bezier2(Contour C, int j1, int j2, do
   L = creer_liste_Point_vide();
   L1 = creer_liste_Point_vide();
   L2 = creer_liste_Point_vide();
-  Bezier2 B2;
 
   int n = j2-j1;
 
-  Bezier2 B = approx_bezier2(C, j1, j2);
+  Bezier2 B2 = approx_bezier2(C, j1, j2);
+
+  Bezier3 B = Bezier2_to_Bezier3(B2);
 
   double dmax = 0;
   int k = j1;
@@ -107,7 +108,7 @@ Liste_Point simplification_douglas_peucker_bezier2(Contour C, int j1, int j2, do
 
     double ti = (double)i / (double)n;
 
-    double dj = distance_point_bezier2(T.tab[j], B, ti);
+    double dj = distance_point_bezier3(T.tab[j], B, ti);
 
     if (dmax < dj)
     {
@@ -118,9 +119,13 @@ Liste_Point simplification_douglas_peucker_bezier2(Contour C, int j1, int j2, do
 
   if (dmax <= d)
   { 
-  	ajouter_element_liste_Point(&L, B2.C0);
-  	ajouter_element_liste_Point(&L, B2.C1);
-  	ajouter_element_liste_Point(&L, B2.C2);
+
+    L.n = 1;
+
+  	ajouter_element_liste_Point(&L, B.C0);
+  	ajouter_element_liste_Point(&L, B.C1);
+  	ajouter_element_liste_Point(&L, B.C2);
+    ajouter_element_liste_Point(&L, B.C3);
 
     /*for (int i = 0 ; i <= n ; i++)
     {
@@ -136,6 +141,7 @@ Liste_Point simplification_douglas_peucker_bezier2(Contour C, int j1, int j2, do
     L2 = simplification_douglas_peucker_bezier2(C, k, j2, d);
 
     L = concatener_liste_Point(L1, L2);
+    L.n = L1.n + L2.n;
   }
 
   return L;
@@ -177,7 +183,7 @@ Liste_Point simplification_douglas_peucker_bezier3(Contour C, int j1, int j2, do
   { 
 
   	L.n = 1;
-    printf("ZOZ\n");
+
     ajouter_element_liste_Point(&L, B.C0);
     ajouter_element_liste_Point(&L, B.C1);
     ajouter_element_liste_Point(&L, B.C2);
