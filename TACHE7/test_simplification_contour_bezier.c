@@ -95,30 +95,39 @@ void convert_to_EPS_(Contour C, int mode, Image I, FILE* f)
 
 void convert_to_EPS_cubic(Contour C, int mode, Image I, FILE* f)
 {
+    // Traite le cas où le contour est vide
     if (C.taille == 0)
     {
         fprintf(stderr, "Le Contour est vide !\n");
         return;
     }
 
+    // Traite le cas où le nombre de points du contour
+    // n'est pas multiple de 4
+
+    if (C.taille % 4 != 0)
+    {
+        fprintf(stderr, "Le Contour ne contient pas le bon nombre de points !\n");
+        return;   
+    }
+
     // Cellule d'itération
-    Cellule_Liste_Point* current = C.first->suiv; 
+    Cellule_Liste_Point* current = C.first->suiv->suiv->suiv->suiv; 
 
     if (mode == 1) // Mode contour avec segments
     {
         fprintf(f,"newpath\n");
 
-        fprintf(f, "%.1f %.1f m %.1f %.1f l\n", C.first->data.x, I.H-C.first->data.y, C.first->suiv->data.x, I.H-C.first->suiv->data.y);
+        fprintf(f, "%.1f %.1f m %.1f %.1f %.1f %.1f %.1f %.1f c\n", C.first->data.x, I.H-C.first->data.y, C.first->suiv->data.x, I.H-C.first->suiv->data.y, C.first->suiv->suiv->data.x, I.H-C.first->suiv->suiv->data.y, C.first->suiv->suiv->suiv->data.x, I.H-C.first->suiv->suiv->suiv->data.y);
 
-        Point previous_point;
+        //Point previous_point;
 
-        while (current->suiv != NULL)
+        while (current != NULL)
         {
-            previous_point = current->data;
-            fprintf(f, "%.1f %.1f l %.1f %.1f l\n", previous_point.x, I.H-previous_point.y, current->suiv->data.x, I.H-current->suiv->data.y);
-            current = current->suiv;
+            //previous_point = current->data;
+            fprintf(f, "%.1f %.1f l %.1f %.1f %.1f %.1f %.1f %.1f c\n", current->data.x, I.H-current->data.y, current->suiv->data.x, I.H-current->suiv->data.y, current->suiv->suiv->data.x, I.H-current->suiv->suiv->data.y, current->suiv->suiv->suiv->data.x, I.H-current->suiv->suiv->suiv->data.y);
+            current = current->suiv->suiv->suiv->suiv;
         }
-
 
         fprintf(f, "\n0 setlinewidth\ns\n");
 
@@ -137,27 +146,27 @@ void convert_to_EPS_cubic(Contour C, int mode, Image I, FILE* f)
 
         fprintf(f,"newpath\n");
 
-        while (current->suiv != NULL)
+        while (current != NULL)
         {
             fprintf(f, "\nnewpath\n%.1f %.1f 0.3 0 360 arc\nfill\nclosepath\n", current->data.x, I.H-current->data.y);
-            current = current->suiv;
+            current = current->suiv->suiv->suiv->suiv;
         }
 
 
         // Après on remet l'itérateur current à la position initiale
         // et on parcours encore une fois la liste pour afficher les segments
 
-        fprintf(f, "%.1f %.1f m %.1f %.1f l\n", C.first->data.x, I.H-C.first->data.y, C.first->suiv->data.x, I.H-C.first->suiv->data.y);
+        fprintf(f, "%.1f %.1f m %.1f %.1f %.1f %.1f %.1f %.1f c\n", C.first->data.x, I.H-C.first->data.y, C.first->suiv->data.x, I.H-C.first->suiv->data.y, C.first->suiv->suiv->data.x, I.H-C.first->suiv->suiv->data.y, C.first->suiv->suiv->suiv->data.x, I.H-C.first->suiv->suiv->suiv->data.y);
 
-        current = C.first;
+        //Point previous_point;
 
-        Point previous_point;
+        current = C.first->suiv->suiv->suiv->suiv;
 
-        while (current->suiv != NULL)
+        while (current != NULL)
         {
-            previous_point = current->data;
-            fprintf(f, "%.1f %.1f l %.1f %.1f l\n", previous_point.x, I.H-previous_point.y, current->suiv->data.x, I.H-current->suiv->data.y);
-            current = current->suiv;
+            //previous_point = current->data;
+            fprintf(f, "%.1f %.1f l %.1f %.1f %.1f %.1f %.1f %.1f c\n", current->data.x, I.H-current->data.y, current->suiv->data.x, I.H-current->suiv->data.y, current->suiv->suiv->data.x, I.H-current->suiv->suiv->data.y, current->suiv->suiv->suiv->data.x, I.H-current->suiv->suiv->suiv->data.y);
+            current = current->suiv->suiv->suiv->suiv;
         }
 
         fprintf(f, "\n0 setlinewidth\ns\n");
@@ -169,21 +178,21 @@ void convert_to_EPS_cubic(Contour C, int mode, Image I, FILE* f)
     else if (mode >= 3) // Mode Remplissage
     {
 
-        //fprintf(f, "%.1f %.1f m %.1f %.1f l\n", C.first->data.x, I.H-C.first->data.y, C.first->suiv->data.x, I.H-C.first->suiv->data.y);
+        
+        fprintf(f, "%.1f %.1f m %.1f %.1f %.1f %.1f %.1f %.1f c\n", C.first->data.x, I.H-C.first->data.y, C.first->suiv->data.x, I.H-C.first->suiv->data.y, C.first->suiv->suiv->data.x, I.H-C.first->suiv->suiv->data.y, C.first->suiv->suiv->suiv->data.x, I.H-C.first->suiv->suiv->suiv->data.y);
 
-        Point previous_point;
+        //Point previous_point;
 
-        while (current->suiv->suiv != NULL)
+        while (current != NULL)
         {
-            previous_point = current->data;
-            fprintf(f, "%.1f %.1f m %.1f %.1f %.1f %.1f %.1f %.1f curveto\n", previous_point.x, I.H-previous_point.y, current->suiv->data.x, I.H-current->suiv->data.y, current->suiv->suiv->data.x, I.H-current->suiv->suiv->data.y, current->suiv->suiv->suiv->data.x, I.H-current->suiv->suiv->suiv->data.y);
-            current = current->suiv->suiv;
+            //previous_point = current->data;
+            fprintf(f, "%.1f %.1f l %.1f %.1f %.1f %.1f %.1f %.1f c\n", current->data.x, I.H-current->data.y, current->suiv->data.x, I.H-current->suiv->data.y, current->suiv->suiv->data.x, I.H-current->suiv->suiv->data.y, current->suiv->suiv->suiv->data.x, I.H-current->suiv->suiv->suiv->data.y);
+            current = current->suiv->suiv->suiv->suiv;
         }
 
-       // fprintf(f, "\n\nf\n");
-       // fprintf(f,"closepath\n\n");
-    } 
+        fprintf(f, "\n\nf\n");
 
+    }
 }
 
 int main(int argc, char** argv)
@@ -211,7 +220,7 @@ int main(int argc, char** argv)
     // Headers du fichier EPS 
     fprintf(f, "%c!PS-Adobe-3.0 EPSF-3.0\n",'%');
     fprintf(f, "%c%cBoundingBox: 0 0 %u %u\n",'%','%', I.L, I.H);
-    fprintf(f, "/l {lineto} def \n/m {moveto} def \n/s {stroke} def\n/f {fill} def\n");
+    fprintf(f, "/l {lineto} def \n/m {moveto} def \n/s {stroke} def\n/f {fill} def\n/c {curveto} def\n");
 
     int nombre_contours = 0;
     int nombre_courbes = 0;
@@ -237,9 +246,10 @@ int main(int argc, char** argv)
 
         //ecrire_contour(L);
         //convert_to_EPS_(L, 3, I, f);
-        convert_to_EPS_cubic(L, 1, I, f);
 
-        sauvegarder_contour(f_con, L);
+        convert_to_EPS_cubic(L, 2, I, f);
+
+        //sauvegarder_contour(f_con, L);
 
         nombre_courbes += L.n;
 

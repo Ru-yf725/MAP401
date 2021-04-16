@@ -3,9 +3,14 @@
 
 int main(int argc, char** argv)
 {
-    // Test (a)
-/*
-//    int n = 1;
+    printf("Quel test vous voulez faire ? (choix possibles : a, b, c ou d)\n");
+    char reponse;
+    scanf("%c", &reponse);
+
+// Test (a)
+if (reponse == 'a')
+{
+    int n = 1;
 
     Contour C;
 
@@ -30,10 +35,12 @@ int main(int argc, char** argv)
 
     printf("=== Contour ===\n");
     ecrire_contour(C);
+}
 
-*/
-    //Test (b)
-/*
+//Test (b)
+else if (reponse == 'b') 
+{
+
     int n = 2;
 
     Contour C = creer_liste_Point_vide(); // On vide le contour C
@@ -56,8 +63,11 @@ int main(int argc, char** argv)
 
     printf("=== Contour ===\n");
     ecrire_contour(C);
-*/
-/*
+
+}
+else if (reponse == 'c')
+{
+
     int n = 4;
 
     Contour C = creer_liste_Point_vide(); // On vide le contour C
@@ -91,7 +101,10 @@ int main(int argc, char** argv)
     afficher_point(B3_approx.C1);
     afficher_point(B3_approx.C2);
     afficher_point(B3_approx.C3);
-*/
+
+}
+else if (reponse == 'd')
+{
     int n = 8;
 
     Contour C;
@@ -131,5 +144,5 @@ int main(int argc, char** argv)
 
     printf("=== Contour ===\n");
     ecrire_contour(C);
-
+}
 }

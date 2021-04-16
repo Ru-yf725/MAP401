@@ -126,12 +126,6 @@ Liste_Point simplification_douglas_peucker_bezier2(Contour C, int j1, int j2, do
   	ajouter_element_liste_Point(&L, B.C1);
   	ajouter_element_liste_Point(&L, B.C2);
     ajouter_element_liste_Point(&L, B.C3);
-
-    /*for (int i = 0 ; i <= n ; i++)
-    {
-      Point P = BEZIER_2(B, i/(double)n);
-      ajouter_element_liste_Point(&L, P);
-    }*/
   }
 
   else
@@ -189,23 +183,17 @@ Liste_Point simplification_douglas_peucker_bezier3(Contour C, int j1, int j2, do
     ajouter_element_liste_Point(&L, B.C2);
     ajouter_element_liste_Point(&L, B.C3);
 
-    /*for (int i = 0 ; i <= n ; i++)
-    {
-      Point P = BEZIER_2(B, i/(double)n);
-      ajouter_element_liste_Point(&L, P);
-    }*/
-
   }
 
   else
   {
+    
     L1 = simplification_douglas_peucker_bezier2(C, j1, k, d);
     L2 = simplification_douglas_peucker_bezier2(C, k, j2, d);
 
     L = concatener_liste_Point(L1, L2);
-    L.n = L1.n + L2.n;
+    L.n = L1.n + L2.n - 2;
   }
-  
   return L;
 }
 
