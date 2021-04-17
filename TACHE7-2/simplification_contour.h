@@ -16,4 +16,8 @@ Liste_Point simplification_douglas_peucker_bezier2(Contour C, int j1, int j2, do
 
 Liste_Point simplification_douglas_peucker_bezier3(Contour C, int j1, int j2, double d);
 
+void convert_to_EPS_cubic(Contour C, int mode, Image I, FILE* f);
+
+void convert_to_EPS_(Contour C, int mode, Image I, FILE* f);
+
 #endif
