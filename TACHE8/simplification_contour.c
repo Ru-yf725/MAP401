@@ -34,11 +34,11 @@ Liste_Point simplification_douglas_peucker(Tableau_Point C, int j1, int j2, doub
   return L;
 }
 
-Bezier2 approx_bezier2(Contour C, int j1, int j2)
+Bezier2 approx_bezier2(Tableau_Point T, int j1, int j2)
 {
   double n = j2 - j1;
 
-  Tableau_Point T = sequence_points_liste_vers_tableau(C);
+ // Tableau_Point T = sequence_points_liste_vers_tableau(C);
 
   Bezier2 B2;
 
@@ -83,10 +83,10 @@ Bezier2 approx_bezier2(Contour C, int j1, int j2)
   return B2;
 }
 
-Liste_Point simplification_douglas_peucker_bezier2(Contour C, int j1, int j2, double d)
+Liste_Point simplification_douglas_peucker_bezier2(Tableau_Point C, int j1, int j2, double d)
 {
 
-  Tableau_Point T = sequence_points_liste_vers_tableau(C);
+ // Tableau_Point T = sequence_points_liste_vers_tableau(C);
 
   Liste_Point L, L1, L2;
   L = creer_liste_Point_vide();
@@ -108,7 +108,7 @@ Liste_Point simplification_douglas_peucker_bezier2(Contour C, int j1, int j2, do
 
     double ti = (double)i / (double)n;
 
-    double dj = distance_point_bezier3(T.tab[j], B, ti);
+    double dj = distance_point_bezier3(C.tab[j], B, ti);
 
     if (dmax < dj)
     {
@@ -141,10 +141,10 @@ Liste_Point simplification_douglas_peucker_bezier2(Contour C, int j1, int j2, do
   return L;
 }
 
-Liste_Point simplification_douglas_peucker_bezier3(Contour C, int j1, int j2, double d)
+Liste_Point simplification_douglas_peucker_bezier3(Tableau_Point C, int j1, int j2, double d)
 {
 
-  Tableau_Point T = sequence_points_liste_vers_tableau(C);
+ // Tableau_Point T = sequence_points_liste_vers_tableau(C);
 
   Liste_Point L, L1, L2;
   L = creer_liste_Point_vide();
@@ -164,7 +164,7 @@ Liste_Point simplification_douglas_peucker_bezier3(Contour C, int j1, int j2, do
 
     double ti = (double)i / (double)n;
 
-    double dj = distance_point_bezier3(T.tab[j], B, ti);
+    double dj = distance_point_bezier3(C.tab[j], B, ti);
 
     if (dmax < dj)
     {
@@ -175,7 +175,7 @@ Liste_Point simplification_douglas_peucker_bezier3(Contour C, int j1, int j2, do
 
   if (dmax <= d)
   { 
-
+    //printf("if");
   	L.n = 1;
 
     ajouter_element_liste_Point(&L, B.C0);
@@ -187,13 +187,14 @@ Liste_Point simplification_douglas_peucker_bezier3(Contour C, int j1, int j2, do
 
   else
   {
-    
-    L1 = simplification_douglas_peucker_bezier2(C, j1, k, d);
-    L2 = simplification_douglas_peucker_bezier2(C, k, j2, d);
+    //printf("else\n");
+    L1 = simplification_douglas_peucker_bezier3(C, j1, k, d);
+    L2 = simplification_douglas_peucker_bezier3(C, k, j2, d);
 
     L = concatener_liste_Point(L1, L2);
     L.n = L1.n + L2.n;
   }
+
   return L;
 }
 
@@ -202,13 +203,14 @@ double gamma_(double k, double n)
   return 6*pow(k,4)-8*n*pow(k,3)+6*pow(k,2)-4*n*k+pow(n,4)-pow(n,2);
 }
 
-Bezier3 approx_bezier3(Contour C, int j1, int j2)
+Bezier3 approx_bezier3(Tableau_Point T, int j1, int j2)
 {
-  
+  //printf("approx_bezier3\n");
   double n = j2 - j1;
 
-  Tableau_Point T = sequence_points_liste_vers_tableau(C);
+ // Tableau_Point T = sequence_points_liste_vers_tableau(C);
 
+  Bezier2 B2;
   Bezier3 B3;
 
   B3.C0 = T.tab[j1];
@@ -218,8 +220,9 @@ Bezier3 approx_bezier3(Contour C, int j1, int j2)
   {
    // B3.C1 = mult_Point(1.0/3, add_point(T.tab[1],mult_Point(2, T.tab[0])));
    // B3.C2 = mult_Point(1.0/3, add_point(T.tab[1],mult_Point(2, T.tab[0])));
-  	Bezier2 B2 = approx_bezier2(C,j1,j2);
+    B2 = approx_bezier2(T,j1,j2);
   	B3 = Bezier2_to_Bezier3(B2);
+    //B3 = approx_bezier3(C, j1, j2);
   }
 
   else
@@ -231,6 +234,7 @@ Bezier3 approx_bezier3(Contour C, int j1, int j2)
     double lambda = (70*n)/(3*(pow(n,2)-1)*(pow(n,2)-4)*(3*pow(n,2)+1));
     
     // Aux : Auxilary Point
+
     Point C1 = mult_Point(alpha, T.tab[j1]);
     C1 = add_point(C1, mult_Point(beta, T.tab[j2]));
 
