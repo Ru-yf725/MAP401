@@ -11,7 +11,7 @@ Liste_Point simplification_douglas_peucker(Tableau_Point C, int j1, int j2, doub
   L1 = creer_liste_Point_vide();
   L2 = creer_liste_Point_vide();
 
-  for (int j = j1 + 1 ; j <= j2 ; j++)
+  for (int j = j1 + 1 ; j < j2 ; j++)
   {
     dj = distance_point_segment(C.tab[j], C.tab[j1], C.tab[j2]);
     if (dmax < dj)
@@ -37,8 +37,6 @@ Liste_Point simplification_douglas_peucker(Tableau_Point C, int j1, int j2, doub
 Bezier2 approx_bezier2(Tableau_Point T, int j1, int j2)
 {
   double n = j2 - j1;
-
- // Tableau_Point T = sequence_points_liste_vers_tableau(C);
 
   Bezier2 B2;
 
@@ -85,9 +83,6 @@ Bezier2 approx_bezier2(Tableau_Point T, int j1, int j2)
 
 Liste_Point simplification_douglas_peucker_bezier2(Tableau_Point C, int j1, int j2, double d)
 {
-
- // Tableau_Point T = sequence_points_liste_vers_tableau(C);
-
   Liste_Point L, L1, L2;
   L = creer_liste_Point_vide();
   L1 = creer_liste_Point_vide();
@@ -108,7 +103,7 @@ Liste_Point simplification_douglas_peucker_bezier2(Tableau_Point C, int j1, int 
 
     double ti = (double)i / (double)n;
 
-    double dj = distance_point_bezier3(C.tab[j], B, ti);
+    double dj = distance_point_bezier2(C.tab[j], B2, ti);
 
     if (dmax < dj)
     {
@@ -139,26 +134,25 @@ Liste_Point simplification_douglas_peucker_bezier2(Tableau_Point C, int j1, int 
   }
 
   return L;
+
 }
 
 Liste_Point simplification_douglas_peucker_bezier3(Tableau_Point C, int j1, int j2, double d)
 {
-
- // Tableau_Point T = sequence_points_liste_vers_tableau(C);
 
   Liste_Point L, L1, L2;
   L = creer_liste_Point_vide();
   L1 = creer_liste_Point_vide();
   L2 = creer_liste_Point_vide();
 
-  int n = j2-j1;
+  UINT n = j2 - j1;
 
   Bezier3 B = approx_bezier3(C, j1, j2);
 
   double dmax = 0;
-  int k = j1;
+  UINT k = j1;
 
-  for (int j = j1 + 1 ; j < j2 ; j++)
+  for (int j = j1 + 1 ; j <= j2 ; j++)
   {
     int i = j - j1;
 
@@ -175,7 +169,7 @@ Liste_Point simplification_douglas_peucker_bezier3(Tableau_Point C, int j1, int 
 
   if (dmax <= d)
   { 
-    //printf("if");
+
   	L.n = 1;
 
     ajouter_element_liste_Point(&L, B.C0);
@@ -187,12 +181,13 @@ Liste_Point simplification_douglas_peucker_bezier3(Tableau_Point C, int j1, int 
 
   else
   {
-    //printf("else\n");
+
     L1 = simplification_douglas_peucker_bezier3(C, j1, k, d);
     L2 = simplification_douglas_peucker_bezier3(C, k, j2, d);
 
     L = concatener_liste_Point(L1, L2);
     L.n = L1.n + L2.n;
+  
   }
 
   return L;
@@ -205,10 +200,9 @@ double gamma_(double k, double n)
 
 Bezier3 approx_bezier3(Tableau_Point T, int j1, int j2)
 {
-  //printf("approx_bezier3\n");
-  double n = j2 - j1;
+  Point C1, C2;
 
- // Tableau_Point T = sequence_points_liste_vers_tableau(C);
+  double n = j2 - j1;
 
   Bezier2 B2;
   Bezier3 B3;
@@ -235,11 +229,11 @@ Bezier3 approx_bezier3(Tableau_Point T, int j1, int j2)
     
     // Aux : Auxilary Point
 
-    Point C1 = mult_Point(alpha, T.tab[j1]);
-    C1 = add_point(C1, mult_Point(beta, T.tab[j2]));
+    //Point C1 = mult_Point(alpha, T.tab[j1]);
+    C1 = add_point(mult_Point(alpha, T.tab[j1]), mult_Point(beta, T.tab[j2]));
 
-    Point C2 = mult_Point(beta, T.tab[j1]);
-    C2 = add_point(C2 , mult_Point(alpha, T.tab[j2]));
+    //Point C2 = mult_Point(beta, T.tab[j1]);
+    C2 = add_point(mult_Point(beta, T.tab[j1]), mult_Point(alpha, T.tab[j2]));
 
     Point Cumul_C1 = set_point(0,0);
     Point Cumul_C2 = set_point(0,0);
@@ -390,12 +384,9 @@ void convert_to_EPS_cubic(Contour C, int mode, Image I, FILE* f)
 
         fprintf(f, "%.1f %.1f m %.1f %.1f %.1f %.1f %.1f %.1f c\n", C.first->data.x, I.H-C.first->data.y, C.first->suiv->data.x, I.H-C.first->suiv->data.y, C.first->suiv->suiv->data.x, I.H-C.first->suiv->suiv->data.y, C.first->suiv->suiv->suiv->data.x, I.H-C.first->suiv->suiv->suiv->data.y);
 
-        //Point previous_point;
-
         while (current != NULL)
         {
-            //previous_point = current->data;
-            fprintf(f, "%.1f %.1f l %.1f %.1f %.1f %.1f %.1f %.1f c\n", current->data.x, I.H-current->data.y, current->suiv->data.x, I.H-current->suiv->data.y, current->suiv->suiv->data.x, I.H-current->suiv->suiv->data.y, current->suiv->suiv->suiv->data.x, I.H-current->suiv->suiv->suiv->data.y);
+            fprintf(f, "%.1f %.1f %.1f %.1f %.1f %.1f c\n", current->suiv->data.x, I.H-current->suiv->data.y, current->suiv->suiv->data.x, I.H-current->suiv->suiv->data.y, current->suiv->suiv->suiv->data.x, I.H-current->suiv->suiv->suiv->data.y);
             current = current->suiv->suiv->suiv->suiv;
         }
 
@@ -421,7 +412,6 @@ void convert_to_EPS_cubic(Contour C, int mode, Image I, FILE* f)
         while (current != NULL)
         {
             fprintf(f, "\nnewpath\n%.1f %.1f 0.3 0 360 arc\nfill\nclosepath\n", current->data.x, I.H-current->data.y);
-//            fprintf(f, "\nnewpath\n%.1f %.1f 0.3 0 360 arc\nfill\nclosepath\n", current->suiv->suiv->data.x, I.H-current->suiv->suiv->data.y);
             current = current->suiv->suiv->suiv->suiv;
         }
 
@@ -435,7 +425,7 @@ void convert_to_EPS_cubic(Contour C, int mode, Image I, FILE* f)
 
         while (current != NULL)
         {
-            fprintf(f, "%.1f %.1f l %.1f %.1f %.1f %.1f %.1f %.1f c\n", current->data.x, I.H-current->data.y, current->suiv->data.x, I.H-current->suiv->data.y, current->suiv->suiv->data.x, I.H-current->suiv->suiv->data.y, current->suiv->suiv->suiv->data.x, I.H-current->suiv->suiv->suiv->data.y);
+            fprintf(f, "%.1f %.1f %.1f %.1f %.1f %.1f c\n", current->suiv->data.x, I.H-current->suiv->data.y, current->suiv->suiv->data.x, I.H-current->suiv->suiv->data.y, current->suiv->suiv->suiv->data.x, I.H-current->suiv->suiv->suiv->data.y);
             current = current->suiv->suiv->suiv->suiv;
         }
 
@@ -455,7 +445,7 @@ void convert_to_EPS_cubic(Contour C, int mode, Image I, FILE* f)
         while (current != NULL)
         {
             //previous_point = current->data;
-            fprintf(f, "%.1f %.1f l %.1f %.1f %.1f %.1f %.1f %.1f c\n", current->data.x, I.H-current->data.y, current->suiv->data.x, I.H-current->suiv->data.y, current->suiv->suiv->data.x, I.H-current->suiv->suiv->data.y, current->suiv->suiv->suiv->data.x, I.H-current->suiv->suiv->suiv->data.y);
+            fprintf(f, "%.1f %.1f %.1f %.1f %.1f %.1f c\n", current->suiv->data.x, I.H-current->suiv->data.y, current->suiv->suiv->data.x, I.H-current->suiv->suiv->data.y, current->suiv->suiv->suiv->data.x, I.H-current->suiv->suiv->suiv->data.y);
             current = current->suiv->suiv->suiv->suiv;
         }
     }
