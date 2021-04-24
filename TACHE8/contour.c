@@ -320,5 +320,5 @@ void det_contour(Image I, Image* M, Point P0, Robot* R, Contour* C)
         
     } while(!( (R->x == P0.x) && (R->y == P0.y) && (R->O == EST) ));
     memoriser_position(*R, C, P0);
-    printf("\n");
+    //printf("\n");
 }

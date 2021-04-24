@@ -125,7 +125,7 @@ Liste_Point simplification_douglas_peucker_bezier2(Tableau_Point C, int j1, int 
   	ajouter_element_liste_Point(&L, B.C0);
   	ajouter_element_liste_Point(&L, B.C1);
   	ajouter_element_liste_Point(&L, B.C2);
-    ajouter_element_liste_Point(&L, B.C3);
+    	ajouter_element_liste_Point(&L, B.C3);
   }
 
   else
@@ -143,8 +143,6 @@ Liste_Point simplification_douglas_peucker_bezier2(Tableau_Point C, int j1, int 
 
 Liste_Point simplification_douglas_peucker_bezier3(Tableau_Point C, int j1, int j2, double d)
 {
-
- // Tableau_Point T = sequence_points_liste_vers_tableau(C);
 
   Liste_Point L, L1, L2;
   L = creer_liste_Point_vide();
@@ -175,7 +173,7 @@ Liste_Point simplification_douglas_peucker_bezier3(Tableau_Point C, int j1, int 
 
   if (dmax <= d)
   { 
-    //printf("if");
+
   	L.n = 1;
 
     ajouter_element_liste_Point(&L, B.C0);
@@ -187,7 +185,7 @@ Liste_Point simplification_douglas_peucker_bezier3(Tableau_Point C, int j1, int 
 
   else
   {
-    //printf("else\n");
+
     L1 = simplification_douglas_peucker_bezier3(C, j1, k, d);
     L2 = simplification_douglas_peucker_bezier3(C, k, j2, d);
 
@@ -205,10 +203,7 @@ double gamma_(double k, double n)
 
 Bezier3 approx_bezier3(Tableau_Point T, int j1, int j2)
 {
-  //printf("approx_bezier3\n");
   double n = j2 - j1;
-
- // Tableau_Point T = sequence_points_liste_vers_tableau(C);
 
   Bezier2 B2;
   Bezier3 B3;

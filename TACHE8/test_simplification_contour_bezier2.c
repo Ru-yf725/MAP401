@@ -21,7 +21,7 @@ int main(int argc, char** argv)
     Point P0;
 
     FILE* f = fopen("contour_simplifie_sortie.eps","w");
-    //FILE* f_con = fopen("contour.txt.contours","w");
+    FILE* f_con = fopen("contour.txt.contours","w");
 
     // Headers du fichier EPS 
     fprintf(f, "%c!PS-Adobe-3.0 EPSF-3.0\n",'%');
@@ -47,13 +47,11 @@ int main(int argc, char** argv)
 
         T = sequence_points_liste_vers_tableau(C);
 
-        L = simplification_douglas_peucker_bezier3(T,0,C.taille-1,d);
+        L = simplification_douglas_peucker_bezier2(T,0,C.taille-1,d);
 
-        //ecrire_contour(L);
+        convert_to_EPS_cubic(L, 3, I, f);
 
-        convert_to_EPS_cubic(L, 1, I, f);
-
-        //sauvegarder_contour(f_con, L);
+        sauvegarder_contour(f_con, L);
 
         nombre_courbes += L.n;
 
@@ -62,6 +60,7 @@ int main(int argc, char** argv)
     fprintf(f, "\nf\n");
     fprintf(f, "\nshowpage\n");
     fclose(f);
+    fclose(f_con);
 
     printf("Nombre de Courbes : %d\n", nombre_courbes);
     printf("Nombre de Contours : %d\n", nombre_contours);

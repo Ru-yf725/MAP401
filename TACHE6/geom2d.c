@@ -38,7 +38,7 @@ Vecteur vect_bipoint(Point A, Point B)
 
 double distance(Point A, Point B)
 {
-  return sqrt((A.x-B.x)*(A.x-B.x)+(A.y-B.y)*(A.y-B.y));
+  return sqrtf((A.x-B.x)*(A.x-B.x)+(A.y-B.y)*(A.y-B.y));
 }
 
 Vecteur soustraction(Vecteur U, Vecteur V)
@@ -59,7 +59,7 @@ Vecteur mult_scalaire(double r, Vecteur V)
 // Retourne la norme du vecteur V donné en paramètre
 double norme_vecteur(Vecteur V)
 {
-  return sqrt(V.x*V.x+V.y*V.y);
+  return sqrtf(V.x*V.x+V.y*V.y);
 }
 
 double produit_scalaire(Vecteur V1, Vecteur V2)
