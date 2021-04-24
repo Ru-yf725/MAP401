@@ -1,0 +1,116 @@
+Fichier : TST_TACHE8/Asterix3.pbm
+nombre de segments : 12926
+nombre de contours : 32
+d = 0
+nombre de segments après simplification : 7698
+
+
+user	0m0,097s
+
+
+Fichier : TST_TACHE8/courbe_hilbert_10.pbm
+nombre de segments : 4194304
+nombre de contours : 1
+d = 0
+nombre de segments après simplification : 1677724
+
+
+user	0m9,112s
+
+
+
+Fichier : TST_TACHE8/courbe_hilbert_7.pbm
+nombre de segments : 65536
+nombre de contours : 1
+d = 0
+nombre de segments après simplification : 26216
+
+
+user	0m0,110s
+
+
+
+Fichier : TST_TACHE8/courbe_hilbert_8.pbm
+nombre de segments : 262144
+nombre de contours : 1
+d = 0
+nombre de segments après simplification : 104860
+
+
+user	0m0,479s
+
+
+
+Fichier : TST_TACHE8/courbe_hilbert_9.pbm
+nombre de segments : 1048576
+nombre de contours : 1
+d = 0
+nombre de segments après simplification : 419432
+
+
+user	0m2,073s
+
+
+Fichier : TST_TACHE8/lettre-L-cursive.pbm
+nombre de segments : 4228
+nombre de contours : 3
+d = 0
+nombre de segments après simplification : 2380
+
+
+user	0m0,035s
+
+
+
+Fichier : TST_TACHE8/Picasso-ColombesDeLaPaix.pbm
+nombre de segments : 21764
+nombre de contours : 106
+d = 0
+nombre de segments après simplification : 13338
+
+
+user	0m0,243s
+
+
+
+Fichier : TST_TACHE8/zebres-1000x0750.pbm
+nombre de segments : 56836
+nombre de contours : 422
+d = 0
+nombre de segments après simplification : 33153
+
+
+user	0m1,966s
+
+
+
+Fichier : TST_TACHE8/zebres-2000x1500.pbm
+nombre de segments : 115426
+nombre de contours : 494
+d = 0
+nombre de segments après simplification : 65799
+
+
+user	0m8,944s
+
+
+
+Fichier : TST_TACHE8/zebres-3000x2250.pbm
+nombre de segments : 173584
+nombre de contours : 490
+d = 0
+nombre de segments après simplification : 98196
+
+
+user	0m19,569s
+
+
+
+Fichier : TST_TACHE8/zebres-4000x3000.pbm
+nombre de segments : 231484
+nombre de contours : 464
+d = 0
+nombre de segments après simplification : 130753
+
+
+user	0m31,043s

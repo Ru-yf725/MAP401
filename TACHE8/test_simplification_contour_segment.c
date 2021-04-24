@@ -3,7 +3,7 @@
 
 int main(int argc, char** argv)
 {
-	int d;
+	double d;
 	Image I;
 	Contour C;
 	Robot R;
@@ -12,7 +12,7 @@ int main(int argc, char** argv)
 
 	I = lire_fichier_image(argv[1]);
 
-	sscanf(argv[2], "%d", &d);
+	sscanf(argv[2], "%lf", &d);
 
 	Image M = mask_detection(I);
 	
@@ -66,7 +66,7 @@ int main(int argc, char** argv)
     printf("\n\nFichier : %s\n", argv[1]);
     printf("nombre de segments : %d\n", somme_segments_total);
     printf("nombre de contours : %d\n", nombre_contours);
-    printf("d =  : %d\n", d);
+    printf("d = %lf\n", d);
     printf("nombre de segments après simplification : %d\n", somme_segments_simpli);
 
 }
