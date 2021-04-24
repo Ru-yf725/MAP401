@@ -137,11 +137,17 @@ Point BEZIER_2(Bezier2 B, double t)
 Point BEZIER_3(Bezier3 B, double t)
 {
     // Point Auxiliaire
+    
     Point Aux = add_point(mult_Point(
                 3*t*pow(1-t,2),B.C1),
                 mult_Point(3*pow(t,2)*(1-t),B.C2));
     Aux = add_point(Aux, mult_Point(pow(t,3), B.C3));
-    return (add_point(mult_Point(pow((1-t),3),B.C0), Aux));
+    Aux = add_point(Aux, mult_Point(pow((1-t),3),B.C0));
+
+    return Aux;
+    
+
+    //return add_point(add_point(add_point(mult_Point(3*t*pow(1-t,2),B.C1),mult_Point(3*pow(t,2)*(1-t),B.C2)), mult_Point(pow(t,3), B.C3)), mult_Point(pow((1-t),3),B.C0));
 }
 
 double distance_point_bezier2(Point P, Bezier2 B, double ti)
@@ -155,8 +161,8 @@ Bezier3 Bezier2_to_Bezier3(Bezier2 B2)
   Bezier3 B3;
 
   B3.C0 = B2.C0;
-  B3.C1 = mult_Point(1.0/3,add_point(B2.C0,mult_Point(2.0, B2.C1)));
-  B3.C2 = mult_Point(1.0/3,add_point(B2.C2,mult_Point(2.0, B2.C1)));
+  B3.C1 = mult_Point(1/3.0,add_point(B2.C0,mult_Point(2.0, B2.C1)));
+  B3.C2 = mult_Point(1/3.0,add_point(B2.C2,mult_Point(2.0, B2.C1)));
   B3.C3 = B2.C2;
 
   return B3;

@@ -5,8 +5,13 @@ if [ ${FILE: -5} == "e.pbm" ] || [ ${FILE: -5} == "x.pbm" ] || [ ${FILE: -5} == 
 then
 
 #FILE=${FILE: 11}
-echo $FILE
- 
+#echo $FILE
+
+	echo "
+	=== time ./test_simplification_contour_segment $FILE ===
+	
+	"
+
   time ./test_simplification_contour_segment $FILE 0
   time ./test_simplification_contour_segment $FILE "0.5" 
   time ./test_simplification_contour_segment $FILE 1

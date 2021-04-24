@@ -50,7 +50,7 @@ int main(int argc, char** argv)
 
       //  ecrire_contour(L);
 
-        convert_to_EPS_(L, 3, I, f);
+        convert_to_EPS(L, 3, I, f);
 
  	//sauvegarder_contour(f_con, L);
 
@@ -63,7 +63,7 @@ int main(int argc, char** argv)
     fprintf(f, "\nshowpage\n");
     fclose(f);
 
-    printf("Fichier : %s\n", argv[1]);
+    printf("\n\nFichier : %s\n", argv[1]);
     printf("nombre de segments : %d\n", somme_segments_total);
     printf("nombre de contours : %d\n", nombre_contours);
     printf("d =  : %d\n", d);

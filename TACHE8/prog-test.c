@@ -3,6 +3,9 @@
 
 int main(int argc, char** argv)
 {
+    Tableau_Point T;
+    Contour C;
+
     printf("Quel test vous voulez faire ? (choix possibles : a, b, c ou d)\n");
     char reponse;
     scanf("%c", &reponse);
@@ -11,8 +14,6 @@ int main(int argc, char** argv)
 if (reponse == 'a')
 {
     int n = 1;
-
-    Contour C;
 
     Point P0 = set_point(1,2);
     Point P1 = set_point(1,1);
@@ -24,8 +25,10 @@ if (reponse == 'a')
     ajouter_element_liste_Point(&C, P0);
     ajouter_element_liste_Point(&C, P1);
 
+    T = sequence_points_liste_vers_tableau(C);
+
     // appel à la fonction approx_bezier3
-    Bezier3 B3 = approx_bezier3(C,0, C.taille-1);
+    Bezier3 B3 = approx_bezier3(T,0, C.taille-1);
 
     printf("=== Points de controles ===\n");
     afficher_point(B3.C0);
@@ -43,7 +46,7 @@ else if (reponse == 'b')
 
     int n = 2;
 
-    Contour C = creer_liste_Point_vide(); // On vide le contour C
+    C = creer_liste_Point_vide(); // On vide le contour C
 
     Point P0 = set_point(1,2);
     Point P1 = set_point(1,1);
@@ -53,7 +56,9 @@ else if (reponse == 'b')
     ajouter_element_liste_Point(&C, P1);
     ajouter_element_liste_Point(&C, P2);
 
-    Bezier3 B3 = approx_bezier3(C,0, C.taille-1);
+    T = sequence_points_liste_vers_tableau(C);
+
+    Bezier3 B3 = approx_bezier3(T,0, C.taille-1);
 
     printf("=== Points de controles ===\n");
     afficher_point(B3.C0);
@@ -70,7 +75,7 @@ else if (reponse == 'c')
 
     int n = 4;
 
-    Contour C = creer_liste_Point_vide(); // On vide le contour C
+    C = creer_liste_Point_vide(); // On vide le contour C
 
     Point Q0 = set_point(1,2);
     Point Q1 = set_point(1,1);
@@ -88,7 +93,9 @@ else if (reponse == 'c')
         ajouter_element_liste_Point(&C, BEZIER_3(B3,i/(double)n));
     }
 
-    Bezier3 B3_approx = approx_bezier3(C,0, C.taille-1);
+    T = sequence_points_liste_vers_tableau(C);
+
+    Bezier3 B3_approx = approx_bezier3(T,0, C.taille-1);
 
     printf("=== Points de controles de la Bezier 3 ===\n");
     afficher_point(B3.C0);
@@ -133,8 +140,10 @@ else if (reponse == 'd')
     ajouter_element_liste_Point(&C, P7);
     ajouter_element_liste_Point(&C, P8);
 
+    T = sequence_points_liste_vers_tableau(C);
+
     // appel à la fonction approx_bezier3
-    Bezier3 B3 = approx_bezier3(C,0, C.taille-1);
+    Bezier3 B3 = approx_bezier3(T,0, C.taille-1);
 
     printf("=== Points de controles ===\n");
     afficher_point(B3.C0);

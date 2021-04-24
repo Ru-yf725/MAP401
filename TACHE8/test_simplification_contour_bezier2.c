@@ -12,6 +12,8 @@ int main(int argc, char** argv)
     Contour L;
 
     I = lire_fichier_image(argv[1]);
+	
+    printf("\n\nFichier : %s\n",argv[1]);
 
     sscanf(argv[2], "%d", &d);
 
@@ -64,5 +66,5 @@ int main(int argc, char** argv)
 
     printf("Nombre de Courbes : %d\n", nombre_courbes);
     printf("Nombre de Contours : %d\n", nombre_contours);
-
+    printf("d = %d\n", d);
 }
