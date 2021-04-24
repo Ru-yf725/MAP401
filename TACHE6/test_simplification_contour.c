@@ -171,7 +171,7 @@ int main(int argc, char** argv)
 
         somme_segments_simpli += L.taille-1;
 
-        ecrire_contour(L);
+//        ecrire_contour(L);
 
         convert_to_EPS_(L, 3, I, f);
 

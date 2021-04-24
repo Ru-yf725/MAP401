@@ -12,6 +12,8 @@ int main(int argc, char** argv)
     Contour L;
 
     I = lire_fichier_image(argv[1]);
+	
+    printf("\n\nFichier : %s\n",argv[1]);
 
     sscanf(argv[2], "%d", &d);
 
@@ -39,13 +41,15 @@ int main(int argc, char** argv)
 
         // Quand on arrive ici, le contour C est rempli
 
+        //ecrire_contour(C);
+
         ++nombre_contours;
 
         PM = trouver_pixel_depart(M);
 
         T = sequence_points_liste_vers_tableau(C);
 
-        L = simplification_douglas_peucker(T,0,C.taille-1,d);
+        L = simplification_douglas_peucker_bezier2(T,0,C.taille-1,d);
 
         convert_to_EPS_cubic(L, 3, I, f);
 
@@ -62,5 +66,5 @@ int main(int argc, char** argv)
 
     printf("Nombre de Courbes : %d\n", nombre_courbes);
     printf("Nombre de Contours : %d\n", nombre_contours);
-
+    printf("d = %d\n", d);
 }

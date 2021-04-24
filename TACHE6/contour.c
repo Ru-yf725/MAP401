@@ -129,7 +129,7 @@ void nouvelle_orientation(Robot* R, Image I)
 
 void memoriser_position(Robot R, Liste_Point* L, Point P)
 {
-    printf("(%.1f ; %.1f)\n", R.x , R.y);
+   // printf("(%.1f ; %.1f)\n", R.x , R.y);
     ajouter_element_liste_Point(L, P);
 }
 
@@ -314,5 +314,5 @@ void det_contour(Image I, Image* M, Point P0, Robot* R, Contour* C)
         
     } while(!( (R->x == P0.x) && (R->y == P0.y) && (R->O == EST) ));
     memoriser_position(*R, C, P0);
-    printf("\n");
+//    printf("\n");
 }

@@ -1,0 +1,405 @@
+=== time ./test_simplification_contour_segment TST_TACHE8/Asterix3.pbm ===
+	
+
+Fichier : TST_TACHE8/Asterix3.pbm
+nombre de segments : 12926
+nombre de contours : 32
+d =  : 0
+nombre de segments après simplification : 7698
+
+
+Fichier : TST_TACHE8/Asterix3.pbm
+nombre de segments : 12926
+nombre de contours : 32
+d =  : 0
+nombre de segments après simplification : 7698
+
+
+Fichier : TST_TACHE8/Asterix3.pbm
+nombre de segments : 12926
+nombre de contours : 32
+d =  : 1
+nombre de segments après simplification : 1314
+
+
+Fichier : TST_TACHE8/Asterix3.pbm
+nombre de segments : 12926
+nombre de contours : 32
+d =  : 2
+nombre de segments après simplification : 635
+
+
+Fichier : TST_TACHE8/Asterix3.pbm
+nombre de segments : 12926
+nombre de contours : 32
+d =  : 4
+nombre de segments après simplification : 394
+
+
+Fichier : TST_TACHE8/Asterix3.pbm
+nombre de segments : 12926
+nombre de contours : 32
+d =  : 8
+nombre de segments après simplification : 264
+
+
+Fichier : TST_TACHE8/Asterix3.pbm
+nombre de segments : 12926
+nombre de contours : 32
+d =  : 16
+nombre de segments après simplification : 153
+
+
+Fichier : TST_TACHE8/Asterix3.pbm
+Nombre de Courbes : 8343
+Nombre de Contours : 32
+d = 0
+
+
+Fichier : TST_TACHE8/Asterix3.pbm
+Nombre de Courbes : 8343
+Nombre de Contours : 32
+d = 0
+
+
+Fichier : TST_TACHE8/Asterix3.pbm
+Nombre de Courbes : 966
+Nombre de Contours : 32
+d = 1
+
+
+Fichier : TST_TACHE8/Asterix3.pbm
+Nombre de Courbes : 371
+Nombre de Contours : 32
+d = 2
+
+
+Fichier : TST_TACHE8/Asterix3.pbm
+Nombre de Courbes : 253
+Nombre de Contours : 32
+d = 4
+
+
+Fichier : TST_TACHE8/Asterix3.pbm
+Nombre de Courbes : 183
+Nombre de Contours : 32
+d = 8
+
+
+Fichier : TST_TACHE8/Asterix3.pbm
+Nombre de Courbes : 119
+Nombre de Contours : 32
+d = 16
+
+
+Fichier : TST_TACHE8/Asterix3.pbm
+Nombre de Courbes : 7688
+Nombre de Contours : 32
+d = 0
+
+
+Fichier : TST_TACHE8/Asterix3.pbm
+Nombre de Courbes : 7688
+Nombre de Contours : 32
+d = 0
+
+
+Fichier : TST_TACHE8/Asterix3.pbm
+Nombre de Courbes : 648
+Nombre de Contours : 32
+d = 1
+
+
+Fichier : TST_TACHE8/Asterix3.pbm
+Nombre de Courbes : 298
+Nombre de Contours : 32
+d = 2
+
+
+Fichier : TST_TACHE8/Asterix3.pbm
+Nombre de Courbes : 210
+Nombre de Contours : 32
+d = 4
+
+
+Fichier : TST_TACHE8/Asterix3.pbm
+Nombre de Courbes : 155
+Nombre de Contours : 32
+d = 8
+
+
+Fichier : TST_TACHE8/Asterix3.pbm
+Nombre de Courbes : 85
+Nombre de Contours : 32
+d = 16
+
+=== time ./test_simplification_contour_segment TST_TACHE8/lettre-L-cursive.pbm ===
+
+Fichier : TST_TACHE8/lettre-L-cursive.pbm
+nombre de segments : 4228
+nombre de contours : 3
+d =  : 0
+nombre de segments après simplification : 2380
+
+
+Fichier : TST_TACHE8/lettre-L-cursive.pbm
+nombre de segments : 4228
+nombre de contours : 3
+d =  : 0
+nombre de segments après simplification : 2380
+
+
+Fichier : TST_TACHE8/lettre-L-cursive.pbm
+nombre de segments : 4228
+nombre de contours : 3
+d =  : 1
+nombre de segments après simplification : 271
+
+
+Fichier : TST_TACHE8/lettre-L-cursive.pbm
+nombre de segments : 4228
+nombre de contours : 3
+d =  : 2
+nombre de segments après simplification : 103
+
+
+Fichier : TST_TACHE8/lettre-L-cursive.pbm
+nombre de segments : 4228
+nombre de contours : 3
+d =  : 4
+nombre de segments après simplification : 74
+
+
+Fichier : TST_TACHE8/lettre-L-cursive.pbm
+nombre de segments : 4228
+nombre de contours : 3
+d =  : 8
+nombre de segments après simplification : 51
+
+
+Fichier : TST_TACHE8/lettre-L-cursive.pbm
+nombre de segments : 4228
+nombre de contours : 3
+d =  : 16
+nombre de segments après simplification : 36
+
+
+Fichier : TST_TACHE8/lettre-L-cursive.pbm
+Nombre de Courbes : 2777
+Nombre de Contours : 3
+d = 0
+
+
+Fichier : TST_TACHE8/lettre-L-cursive.pbm
+Nombre de Courbes : 2777
+Nombre de Contours : 3
+d = 0
+
+
+Fichier : TST_TACHE8/lettre-L-cursive.pbm
+Nombre de Courbes : 255
+Nombre de Contours : 3
+d = 1
+
+
+Fichier : TST_TACHE8/lettre-L-cursive.pbm
+Nombre de Courbes : 46
+Nombre de Contours : 3
+d = 2
+
+
+Fichier : TST_TACHE8/lettre-L-cursive.pbm
+Nombre de Courbes : 34
+Nombre de Contours : 3
+d = 4
+
+
+Fichier : TST_TACHE8/lettre-L-cursive.pbm
+Nombre de Courbes : 29
+Nombre de Contours : 3
+d = 8
+
+
+Fichier : TST_TACHE8/lettre-L-cursive.pbm
+Nombre de Courbes : 21
+Nombre de Contours : 3
+d = 16
+
+
+Fichier : TST_TACHE8/lettre-L-cursive.pbm
+Nombre de Courbes : 2521
+Nombre de Contours : 3
+d = 0
+
+
+Fichier : TST_TACHE8/lettre-L-cursive.pbm
+Nombre de Courbes : 2521
+Nombre de Contours : 3
+d = 0
+
+
+Fichier : TST_TACHE8/lettre-L-cursive.pbm
+Nombre de Courbes : 157
+Nombre de Contours : 3
+d = 1
+
+
+Fichier : TST_TACHE8/lettre-L-cursive.pbm
+Nombre de Courbes : 40
+Nombre de Contours : 3
+d = 2
+
+
+Fichier : TST_TACHE8/lettre-L-cursive.pbm
+Nombre de Courbes : 28
+Nombre de Contours : 3
+d = 4
+
+
+Fichier : TST_TACHE8/lettre-L-cursive.pbm
+Nombre de Courbes : 25
+Nombre de Contours : 3
+d = 8
+
+
+Fichier : TST_TACHE8/lettre-L-cursive.pbm
+Nombre de Courbes : 16
+Nombre de Contours : 3
+d = 16
+
+=== time ./test_simplification_contour_segment TST_TACHE8/Picasso-ColombesDeLaPaix.pbm ===
+	
+	
+
+
+Fichier : TST_TACHE8/Picasso-ColombesDeLaPaix.pbm
+nombre de segments : 21764
+nombre de contours : 106
+d =  : 0
+nombre de segments après simplification : 13338
+
+
+Fichier : TST_TACHE8/Picasso-ColombesDeLaPaix.pbm
+nombre de segments : 21764
+nombre de contours : 106
+d =  : 0
+nombre de segments après simplification : 13338
+
+
+Fichier : TST_TACHE8/Picasso-ColombesDeLaPaix.pbm
+nombre de segments : 21764
+nombre de contours : 106
+d =  : 1
+nombre de segments après simplification : 2452
+
+
+Fichier : TST_TACHE8/Picasso-ColombesDeLaPaix.pbm
+nombre de segments : 21764
+nombre de contours : 106
+d =  : 2
+nombre de segments après simplification : 1133
+
+
+Fichier : TST_TACHE8/Picasso-ColombesDeLaPaix.pbm
+nombre de segments : 21764
+nombre de contours : 106
+d =  : 4
+nombre de segments après simplification : 769
+
+
+Fichier : TST_TACHE8/Picasso-ColombesDeLaPaix.pbm
+nombre de segments : 21764
+nombre de contours : 106
+d =  : 8
+nombre de segments après simplification : 497
+
+
+Fichier : TST_TACHE8/Picasso-ColombesDeLaPaix.pbm
+nombre de segments : 21764
+nombre de contours : 106
+d =  : 16
+nombre de segments après simplification : 323
+
+
+Fichier : TST_TACHE8/Picasso-ColombesDeLaPaix.pbm
+Nombre de Courbes : 13989
+Nombre de Contours : 106
+d = 0
+
+
+Fichier : TST_TACHE8/Picasso-ColombesDeLaPaix.pbm
+Nombre de Courbes : 13989
+Nombre de Contours : 106
+d = 0
+
+
+Fichier : TST_TACHE8/Picasso-ColombesDeLaPaix.pbm
+Nombre de Courbes : 1599
+Nombre de Contours : 106
+d = 1
+
+
+Fichier : TST_TACHE8/Picasso-ColombesDeLaPaix.pbm
+Nombre de Courbes : 717
+Nombre de Contours : 106
+d = 2
+
+
+Fichier : TST_TACHE8/Picasso-ColombesDeLaPaix.pbm
+Nombre de Courbes : 505
+Nombre de Contours : 106
+d = 4
+
+
+Fichier : TST_TACHE8/Picasso-ColombesDeLaPaix.pbm
+Nombre de Courbes : 332
+Nombre de Contours : 106
+d = 8
+
+
+Fichier : TST_TACHE8/Picasso-ColombesDeLaPaix.pbm
+Nombre de Courbes : 229
+Nombre de Contours : 106
+d = 16
+
+
+Fichier : TST_TACHE8/Picasso-ColombesDeLaPaix.pbm
+Nombre de Courbes : 13059
+Nombre de Contours : 106
+d = 0
+
+
+Fichier : TST_TACHE8/Picasso-ColombesDeLaPaix.pbm
+Nombre de Courbes : 13059
+Nombre de Contours : 106
+d = 0
+
+
+Fichier : TST_TACHE8/Picasso-ColombesDeLaPaix.pbm
+Nombre de Courbes : 1155
+Nombre de Contours : 106
+d = 1
+
+
+Fichier : TST_TACHE8/Picasso-ColombesDeLaPaix.pbm
+Nombre de Courbes : 563
+Nombre de Contours : 106
+d = 2
+
+
+Fichier : TST_TACHE8/Picasso-ColombesDeLaPaix.pbm
+Nombre de Courbes : 385
+Nombre de Contours : 106
+d = 4
+
+
+Fichier : TST_TACHE8/Picasso-ColombesDeLaPaix.pbm
+Nombre de Courbes : 259
+Nombre de Contours : 106
+d = 8
+
+
+Fichier : TST_TACHE8/Picasso-ColombesDeLaPaix.pbm
+Nombre de Courbes : 180
+Nombre de Contours : 106
+d = 16

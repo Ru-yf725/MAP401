@@ -78,10 +78,10 @@ test_image.o : test_image.c image.h
 	$(CC) -c $(COMPILOPTS) $<
 
 test_geom2d.o: test_geom2d.c types.h
-	$(CC) -c $<
+	$(CC) -c $< -lm
 
 geom2d.o: geom2d.c geom2d.h
-	$(CC) -c $<
+	$(CC) -c $< -lm
 
 test_contour.o: test_contour.c types.h image.h
 	$(CC) -c $<
@@ -103,13 +103,13 @@ test_image : test_image.o image.o
 	$(CC) $^ $(LDOPTS) -o $@
 
 test_geom2d: geom2d.o test_geom2d.o
-	clang $^ -o $@
+	clang $^ -o $@ -lm
 
 test_contour: contour.o test_contour.o image.o sequence_point.o
 	clang $^ -o $@
 
 test_simplification_contour: test_simplification_contour.o geom2d.o sequence_point.o image.o contour.o simplification_contour.o
-	clang $^ -o $@
+	clang $^ -o $@ -lm
 
 # regle pour "nettoyer" le répertoire
 clean:

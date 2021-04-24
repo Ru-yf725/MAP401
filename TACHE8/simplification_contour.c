@@ -120,7 +120,7 @@ Liste_Point simplification_douglas_peucker_bezier2(Tableau_Point C, int j1, int 
   	ajouter_element_liste_Point(&L, B.C0);
   	ajouter_element_liste_Point(&L, B.C1);
   	ajouter_element_liste_Point(&L, B.C2);
-    ajouter_element_liste_Point(&L, B.C3);
+    	ajouter_element_liste_Point(&L, B.C3);
   }
 
   else
@@ -200,9 +200,9 @@ double gamma_(double k, double n)
 
 Bezier3 approx_bezier3(Tableau_Point T, int j1, int j2)
 {
-  Point C1, C2;
-
   double n = j2 - j1;
+
+  Point C1, C2;
 
   Bezier2 B2;
   Bezier3 B3;
@@ -215,7 +215,7 @@ Bezier3 approx_bezier3(Tableau_Point T, int j1, int j2)
    // B3.C1 = mult_Point(1.0/3, add_point(T.tab[1],mult_Point(2, T.tab[0])));
    // B3.C2 = mult_Point(1.0/3, add_point(T.tab[1],mult_Point(2, T.tab[0])));
     B2 = approx_bezier2(T,j1,j2);
-  	B3 = Bezier2_to_Bezier3(B2);
+    B3 = Bezier2_to_Bezier3(B2);
     //B3 = approx_bezier3(C, j1, j2);
   }
 
