@@ -2,7 +2,8 @@
 #include "types_macros.h"
 #include <stdlib.h>
 #include <time.h>
-/*
+
+// Test par procédure peudo-aléatoire
 int main(int argc, char** argv)
 {
         srand(time(NULL));
@@ -29,14 +30,4 @@ int main(int argc, char** argv)
         sauvegarder_image(A,"output.pbm");
         printf("Nouvelle image enregistrée sous le nom output.pbm\n");
 }
-*/
-int main(int argc, char** argv)
-{
-    Image A;
 
-    A = lire_fichier_image(argv[1]);
-  
-    agrandissement_double(A);
-
-    ecrire_image(A);
-}

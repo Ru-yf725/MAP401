@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include "simplification_contour.h"
 
+/* Programme de TEST pour la simplification d'une image par segments */
 int main(int argc, char** argv)
 {
+    // Données
 	double d;
 	Image I;
 	Contour C;
@@ -10,18 +12,23 @@ int main(int argc, char** argv)
 	Tableau_Point T;
 	Contour L;
 
+    // Lecture image
 	I = lire_fichier_image(argv[1]);
 
+    // Récupération de la valeur distance-seuil d depuis l'arg
 	sscanf(argv[2], "%lf", &d);
 
+    // Detection du MASK
 	Image M = mask_detection(I);
 	
-
+    // Trouver le point de départ
 	Point PM = trouver_pixel_depart(M);
 	Point P0;
 
+    // ouverture du fichier .eps en mode write
 	FILE* f = fopen("contour_simplifie_sortie.eps","w");
 
+    // Initialisation des variables compteurs
     int nombre_contours = 0;
     int somme_segments_total = 0;
     int somme_segments_simpli = 0;
@@ -48,11 +55,11 @@ int main(int argc, char** argv)
 
         somme_segments_simpli += L.taille-1;
 
-      //  ecrire_contour(L);
+        //ecrire_contour(L);
 
         convert_to_EPS(L, 3, I, f);
 
- 	//sauvegarder_contour(f_con, L);
+ 	    //sauvegarder_contour(f_con, L);
 
     	} while (PM.x != -1 && PM.y != -1);
 

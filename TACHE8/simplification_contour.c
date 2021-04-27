@@ -1,6 +1,7 @@
 #include "simplification_contour.h"
 #include <math.h>
 
+// Paquetage simplification contour
 Liste_Point simplification_douglas_peucker(Tableau_Point C, int j1, int j2, double d)
 {
   double dmax = 0;
@@ -72,6 +73,7 @@ Bezier2 approx_bezier2(Tableau_Point T, int j1, int j2)
 
     B2.C1 = add_point(B2.C1, Aux);
 
+    // Enlever le commentaire ci-dessous pour afficher les distances Point-Bezier
     /*for (int i = 1 ; i < n ; i++)
     {
       printf("dist = %lf\n", distance_point_bezier2(T.tab[i], B2, (double)i/n));
@@ -212,11 +214,8 @@ Bezier3 approx_bezier3(Tableau_Point T, int j1, int j2)
 
   if (n < 3)
   {
-   // B3.C1 = mult_Point(1.0/3, add_point(T.tab[1],mult_Point(2, T.tab[0])));
-   // B3.C2 = mult_Point(1.0/3, add_point(T.tab[1],mult_Point(2, T.tab[0])));
     B2 = approx_bezier2(T,j1,j2);
     B3 = Bezier2_to_Bezier3(B2);
-    //B3 = approx_bezier3(C, j1, j2);
   }
 
   else
@@ -229,10 +228,8 @@ Bezier3 approx_bezier3(Tableau_Point T, int j1, int j2)
     
     // Aux : Auxilary Point
 
-    //Point C1 = mult_Point(alpha, T.tab[j1]);
     C1 = add_point(mult_Point(alpha, T.tab[j1]), mult_Point(beta, T.tab[j2]));
 
-    //Point C2 = mult_Point(beta, T.tab[j1]);
     C2 = add_point(mult_Point(beta, T.tab[j1]), mult_Point(alpha, T.tab[j2]));
 
     Point Cumul_C1 = set_point(0,0);
@@ -251,6 +248,7 @@ Bezier3 approx_bezier3(Tableau_Point T, int j1, int j2)
     B3.C2 = add_point(C2, Cumul_C2);
   }
 
+  // Enlever le commentaire ci-dessous pour afficher les distances Point-Bezier
   /*for (int i = 1 ; i < n ; i++)
     {
       printf("dist = %lf\n", distance_point_bezier3(T.tab[i], B3, (double) i/n));
@@ -351,9 +349,6 @@ void convert_to_EPS_(Contour C, int mode, Image I, FILE* f)
             fprintf(f, "%.1f %.1f l %.1f %.1f l\n", previous_point.x, I.H-previous_point.y, current->suiv->data.x, I.H-current->suiv->data.y);
             current = current->suiv;
         }
-
-       // fprintf(f, "\n\nf\n");
-       // fprintf(f,"closepath\n\n");
     }
 }
 
@@ -440,11 +435,8 @@ void convert_to_EPS_cubic(Contour C, int mode, Image I, FILE* f)
 
         fprintf(f, "%.1f %.1f m %.1f %.1f %.1f %.1f %.1f %.1f c\n", C.first->data.x, I.H-C.first->data.y, C.first->suiv->data.x, I.H-C.first->suiv->data.y, C.first->suiv->suiv->data.x, I.H-C.first->suiv->suiv->data.y, C.first->suiv->suiv->suiv->data.x, I.H-C.first->suiv->suiv->suiv->data.y);
 
-        //Point previous_point;
-
         while (current != NULL)
         {
-            //previous_point = current->data;
             fprintf(f, "%.1f %.1f %.1f %.1f %.1f %.1f c\n", current->suiv->data.x, I.H-current->suiv->data.y, current->suiv->suiv->data.x, I.H-current->suiv->suiv->data.y, current->suiv->suiv->suiv->data.x, I.H-current->suiv->suiv->suiv->data.y);
             current = current->suiv->suiv->suiv->suiv;
         }

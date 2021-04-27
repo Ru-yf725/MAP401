@@ -1,0 +1,686 @@
+	=== time ./test_simplification_contour_segment TST_TACHE8/Asterix3.pbm ===
+	
+	
+
+
+Fichier : TST_TACHE8/Asterix3.pbm
+nombre de segments total : 12926
+nombre de contours : 32
+d = 0.000000
+nombre de segments après simplification : 7698
+
+real	0m0,162s
+user	0m0,110s
+sys	0m0,012s
+
+
+Fichier : TST_TACHE8/Asterix3.pbm
+nombre de segments total : 12926
+nombre de contours : 32
+d = 0.500000
+nombre de segments après simplification : 6172
+
+real	0m0,115s
+user	0m0,102s
+sys	0m0,004s
+
+
+Fichier : TST_TACHE8/Asterix3.pbm
+nombre de segments total : 12926
+nombre de contours : 32
+d = 1.000000
+nombre de segments après simplification : 1314
+
+real	0m0,107s
+user	0m0,092s
+sys	0m0,008s
+
+
+Fichier : TST_TACHE8/Asterix3.pbm
+nombre de segments total : 12926
+nombre de contours : 32
+d = 2.000000
+nombre de segments après simplification : 635
+
+real	0m0,116s
+user	0m0,107s
+sys	0m0,004s
+
+
+Fichier : TST_TACHE8/Asterix3.pbm
+nombre de segments total : 12926
+nombre de contours : 32
+d = 4.000000
+nombre de segments après simplification : 394
+
+real	0m0,101s
+user	0m0,097s
+sys	0m0,000s
+
+
+Fichier : TST_TACHE8/Asterix3.pbm
+nombre de segments total : 12926
+nombre de contours : 32
+d = 8.000000
+nombre de segments après simplification : 264
+
+real	0m0,122s
+user	0m0,108s
+sys	0m0,008s
+
+
+Fichier : TST_TACHE8/Asterix3.pbm
+nombre de segments total : 12926
+nombre de contours : 32
+d = 16.000000
+nombre de segments après simplification : 153
+
+real	0m0,103s
+user	0m0,094s
+sys	0m0,004s
+
+        === time ./test_simplification_contour_bezier2 TST_TACHE8/Asterix3.pbm ===
+        
+        
+
+
+Fichier : TST_TACHE8/Asterix3.pbm
+Nombre de Courbes (Bezier2) : 8343
+Nombre de Contours : 32
+d = 0.000000
+
+real	0m0,152s
+user	0m0,136s
+sys	0m0,004s
+
+
+Fichier : TST_TACHE8/Asterix3.pbm
+Nombre de Courbes (Bezier2) : 4968
+Nombre de Contours : 32
+d = 0.500000
+
+real	0m0,137s
+user	0m0,120s
+sys	0m0,007s
+
+
+Fichier : TST_TACHE8/Asterix3.pbm
+Nombre de Courbes (Bezier2) : 966
+Nombre de Contours : 32
+d = 1.000000
+
+real	0m0,105s
+user	0m0,095s
+sys	0m0,004s
+
+
+Fichier : TST_TACHE8/Asterix3.pbm
+Nombre de Courbes (Bezier2) : 371
+Nombre de Contours : 32
+d = 2.000000
+
+real	0m0,095s
+user	0m0,075s
+sys	0m0,015s
+
+
+Fichier : TST_TACHE8/Asterix3.pbm
+Nombre de Courbes (Bezier2) : 253
+Nombre de Contours : 32
+d = 4.000000
+
+real	0m0,106s
+user	0m0,093s
+sys	0m0,008s
+
+
+Fichier : TST_TACHE8/Asterix3.pbm
+Nombre de Courbes (Bezier2) : 183
+Nombre de Contours : 32
+d = 8.000000
+
+real	0m0,111s
+user	0m0,099s
+sys	0m0,004s
+
+
+Fichier : TST_TACHE8/Asterix3.pbm
+Nombre de Courbes (Bezier2) : 119
+Nombre de Contours : 32
+d = 16.000000
+
+real	0m0,128s
+user	0m0,115s
+sys	0m0,000s
+
+        === time ./test_simplification_contour_bezier3 TST_TACHE8/Asterix3.pbm ===
+        
+        
+
+
+Fichier : TST_TACHE8/Asterix3.pbm
+Nombre de Courbes (Bezier3) : 7688
+Nombre de Contours : 32
+d = 0.000000
+
+real	0m0,276s
+user	0m0,260s
+sys	0m0,004s
+
+
+Fichier : TST_TACHE8/Asterix3.pbm
+Nombre de Courbes (Bezier3) : 3470
+Nombre de Contours : 32
+d = 0.500000
+
+real	0m0,240s
+user	0m0,218s
+sys	0m0,012s
+
+
+Fichier : TST_TACHE8/Asterix3.pbm
+Nombre de Courbes (Bezier3) : 648
+Nombre de Contours : 32
+d = 1.000000
+
+real	0m0,191s
+user	0m0,179s
+sys	0m0,004s
+
+
+Fichier : TST_TACHE8/Asterix3.pbm
+Nombre de Courbes (Bezier3) : 298
+Nombre de Contours : 32
+d = 2.000000
+
+real	0m0,181s
+user	0m0,164s
+sys	0m0,008s
+
+
+Fichier : TST_TACHE8/Asterix3.pbm
+Nombre de Courbes (Bezier3) : 210
+Nombre de Contours : 32
+d = 4.000000
+
+real	0m0,168s
+user	0m0,156s
+sys	0m0,005s
+
+
+Fichier : TST_TACHE8/Asterix3.pbm
+Nombre de Courbes (Bezier3) : 155
+Nombre de Contours : 32
+d = 8.000000
+
+real	0m0,173s
+user	0m0,164s
+sys	0m0,001s
+
+
+Fichier : TST_TACHE8/Asterix3.pbm
+Nombre de Courbes (Bezier3) : 85
+Nombre de Contours : 32
+d = 16.000000
+
+real	0m0,164s
+user	0m0,150s
+sys	0m0,005s
+
+	=== time ./test_simplification_contour_segment TST_TACHE8/lettre-L-cursive.pbm ===
+	
+	
+
+
+Fichier : TST_TACHE8/lettre-L-cursive.pbm
+nombre de segments total : 4228
+nombre de contours : 3
+d = 0.000000
+nombre de segments après simplification : 2380
+
+real	0m0,108s
+user	0m0,050s
+sys	0m0,004s
+
+
+Fichier : TST_TACHE8/lettre-L-cursive.pbm
+nombre de segments total : 4228
+nombre de contours : 3
+d = 0.500000
+nombre de segments après simplification : 1904
+
+real	0m0,034s
+user	0m0,023s
+sys	0m0,007s
+
+
+Fichier : TST_TACHE8/lettre-L-cursive.pbm
+nombre de segments total : 4228
+nombre de contours : 3
+d = 1.000000
+nombre de segments après simplification : 271
+
+real	0m0,048s
+user	0m0,033s
+sys	0m0,009s
+
+
+Fichier : TST_TACHE8/lettre-L-cursive.pbm
+nombre de segments total : 4228
+nombre de contours : 3
+d = 2.000000
+nombre de segments après simplification : 103
+
+real	0m0,041s
+user	0m0,033s
+sys	0m0,005s
+
+
+Fichier : TST_TACHE8/lettre-L-cursive.pbm
+nombre de segments total : 4228
+nombre de contours : 3
+d = 4.000000
+nombre de segments après simplification : 74
+
+real	0m0,051s
+user	0m0,032s
+sys	0m0,014s
+
+
+Fichier : TST_TACHE8/lettre-L-cursive.pbm
+nombre de segments total : 4228
+nombre de contours : 3
+d = 8.000000
+nombre de segments après simplification : 51
+
+real	0m0,038s
+user	0m0,030s
+sys	0m0,004s
+
+
+Fichier : TST_TACHE8/lettre-L-cursive.pbm
+nombre de segments total : 4228
+nombre de contours : 3
+d = 16.000000
+nombre de segments après simplification : 36
+
+real	0m0,029s
+user	0m0,021s
+sys	0m0,005s
+
+=== time ./test_simplification_contour_bezier2 TST_TACHE8/lettre-L-cursive.pbm ===
+        
+        
+
+
+Fichier : TST_TACHE8/lettre-L-cursive.pbm
+Nombre de Courbes (Bezier2) : 2777
+Nombre de Contours : 3
+d = 0.000000
+
+real	0m0,055s
+user	0m0,047s
+sys	0m0,001s
+
+
+Fichier : TST_TACHE8/lettre-L-cursive.pbm
+Nombre de Courbes (Bezier2) : 1717
+Nombre de Contours : 3
+d = 0.500000
+
+real	0m0,047s
+user	0m0,035s
+sys	0m0,005s
+
+
+Fichier : TST_TACHE8/lettre-L-cursive.pbm
+Nombre de Courbes (Bezier2) : 255
+Nombre de Contours : 3
+d = 1.000000
+
+real	0m0,050s
+user	0m0,038s
+sys	0m0,005s
+
+
+Fichier : TST_TACHE8/lettre-L-cursive.pbm
+Nombre de Courbes (Bezier2) : 46
+Nombre de Contours : 3
+d = 2.000000
+
+real	0m0,034s
+user	0m0,027s
+sys	0m0,001s
+
+
+Fichier : TST_TACHE8/lettre-L-cursive.pbm
+Nombre de Courbes (Bezier2) : 34
+Nombre de Contours : 3
+d = 4.000000
+
+real	0m0,036s
+user	0m0,025s
+sys	0m0,005s
+
+
+Fichier : TST_TACHE8/lettre-L-cursive.pbm
+Nombre de Courbes (Bezier2) : 29
+Nombre de Contours : 3
+d = 8.000000
+
+real	0m0,032s
+user	0m0,026s
+sys	0m0,001s
+
+
+Fichier : TST_TACHE8/lettre-L-cursive.pbm
+Nombre de Courbes (Bezier2) : 21
+Nombre de Contours : 3
+d = 16.000000
+
+real	0m0,038s
+user	0m0,026s
+sys	0m0,007s
+
+        === time ./test_simplification_contour_bezier3 TST_TACHE8/lettre-L-cursive.pbm ===
+        
+        
+
+
+Fichier : TST_TACHE8/lettre-L-cursive.pbm
+Nombre de Courbes (Bezier3) : 2521
+Nombre de Contours : 3
+d = 0.000000
+
+real	0m0,113s
+user	0m0,100s
+sys	0m0,005s
+
+
+Fichier : TST_TACHE8/lettre-L-cursive.pbm
+Nombre de Courbes (Bezier3) : 1215
+Nombre de Contours : 3
+d = 0.500000
+
+real	0m0,106s
+user	0m0,093s
+sys	0m0,005s
+
+
+Fichier : TST_TACHE8/lettre-L-cursive.pbm
+Nombre de Courbes (Bezier3) : 157
+Nombre de Contours : 3
+d = 1.000000
+
+real	0m0,074s
+user	0m0,067s
+sys	0m0,001s
+
+
+Fichier : TST_TACHE8/lettre-L-cursive.pbm
+Nombre de Courbes (Bezier3) : 40
+Nombre de Contours : 3
+d = 2.000000
+
+real	0m0,065s
+user	0m0,053s
+sys	0m0,004s
+
+
+Fichier : TST_TACHE8/lettre-L-cursive.pbm
+Nombre de Courbes (Bezier3) : 28
+Nombre de Contours : 3
+d = 4.000000
+
+real	0m0,047s
+user	0m0,033s
+sys	0m0,008s
+
+
+Fichier : TST_TACHE8/lettre-L-cursive.pbm
+Nombre de Courbes (Bezier3) : 25
+Nombre de Contours : 3
+d = 8.000000
+
+real	0m0,049s
+user	0m0,036s
+sys	0m0,008s
+
+
+Fichier : TST_TACHE8/lettre-L-cursive.pbm
+Nombre de Courbes (Bezier3) : 16
+Nombre de Contours : 3
+d = 16.000000
+
+real	0m0,047s
+user	0m0,038s
+sys	0m0,004s
+
+	=== time ./test_simplification_contour_segment TST_TACHE8/Picasso-ColombesDeLaPaix.pbm ===
+	
+	
+
+
+Fichier : TST_TACHE8/Picasso-ColombesDeLaPaix.pbm
+nombre de segments total : 21764
+nombre de contours : 106
+d = 0.000000
+nombre de segments après simplification : 13338
+
+real	0m0,283s
+user	0m0,241s
+sys	0m0,004s
+
+
+Fichier : TST_TACHE8/Picasso-ColombesDeLaPaix.pbm
+nombre de segments total : 21764
+nombre de contours : 106
+d = 0.500000
+nombre de segments après simplification : 10474
+
+real	0m0,244s
+user	0m0,224s
+sys	0m0,012s
+
+
+Fichier : TST_TACHE8/Picasso-ColombesDeLaPaix.pbm
+nombre de segments total : 21764
+nombre de contours : 106
+d = 1.000000
+nombre de segments après simplification : 2452
+
+real	0m0,226s
+user	0m0,209s
+sys	0m0,012s
+
+
+Fichier : TST_TACHE8/Picasso-ColombesDeLaPaix.pbm
+nombre de segments total : 21764
+nombre de contours : 106
+d = 2.000000
+nombre de segments après simplification : 1133
+
+real	0m0,218s
+user	0m0,212s
+sys	0m0,000s
+
+
+Fichier : TST_TACHE8/Picasso-ColombesDeLaPaix.pbm
+nombre de segments total : 21764
+nombre de contours : 106
+d = 4.000000
+nombre de segments après simplification : 769
+
+real	0m0,226s
+user	0m0,208s
+sys	0m0,012s
+
+
+Fichier : TST_TACHE8/Picasso-ColombesDeLaPaix.pbm
+nombre de segments total : 21764
+nombre de contours : 106
+d = 8.000000
+nombre de segments après simplification : 497
+
+real	0m0,208s
+user	0m0,196s
+sys	0m0,008s
+
+
+Fichier : TST_TACHE8/Picasso-ColombesDeLaPaix.pbm
+nombre de segments total : 21764
+nombre de contours : 106
+d = 16.000000
+nombre de segments après simplification : 323
+
+real	0m0,209s
+user	0m0,205s
+sys	0m0,000s
+
+        === time ./test_simplification_contour_bezier2 TST_TACHE8/Picasso-ColombesDeLaPaix.pbm ===
+        
+        
+
+
+Fichier : TST_TACHE8/Picasso-ColombesDeLaPaix.pbm
+Nombre de Courbes (Bezier2) : 13989
+Nombre de Contours : 106
+d = 0.000000
+
+real	0m0,307s
+user	0m0,279s
+sys	0m0,012s
+
+
+Fichier : TST_TACHE8/Picasso-ColombesDeLaPaix.pbm
+Nombre de Courbes (Bezier2) : 8440
+Nombre de Contours : 106
+d = 0.500000
+
+real	0m0,286s
+user	0m0,269s
+sys	0m0,000s
+
+
+Fichier : TST_TACHE8/Picasso-ColombesDeLaPaix.pbm
+Nombre de Courbes (Bezier2) : 1599
+Nombre de Contours : 106
+d = 1.000000
+
+real	0m0,229s
+user	0m0,218s
+sys	0m0,004s
+
+
+Fichier : TST_TACHE8/Picasso-ColombesDeLaPaix.pbm
+Nombre de Courbes (Bezier2) : 717
+Nombre de Contours : 106
+d = 2.000000
+
+real	0m0,218s
+user	0m0,207s
+sys	0m0,005s
+
+
+Fichier : TST_TACHE8/Picasso-ColombesDeLaPaix.pbm
+Nombre de Courbes (Bezier2) : 505
+Nombre de Contours : 106
+d = 4.000000
+
+real	0m0,238s
+user	0m0,217s
+sys	0m0,013s
+
+
+Fichier : TST_TACHE8/Picasso-ColombesDeLaPaix.pbm
+Nombre de Courbes (Bezier2) : 332
+Nombre de Contours : 106
+d = 8.000000
+
+real	0m0,228s
+user	0m0,210s
+sys	0m0,013s
+
+
+Fichier : TST_TACHE8/Picasso-ColombesDeLaPaix.pbm
+Nombre de Courbes (Bezier2) : 229
+Nombre de Contours : 106
+d = 16.000000
+
+real	0m0,239s
+user	0m0,218s
+sys	0m0,013s
+
+        === time ./test_simplification_contour_bezier3 TST_TACHE8/Picasso-ColombesDeLaPaix.pbm ===
+        
+        
+
+
+Fichier : TST_TACHE8/Picasso-ColombesDeLaPaix.pbm
+Nombre de Courbes (Bezier3) : 13059
+Nombre de Contours : 106
+d = 0.000000
+
+real	0m0,473s
+user	0m0,449s
+sys	0m0,008s
+
+
+Fichier : TST_TACHE8/Picasso-ColombesDeLaPaix.pbm
+Nombre de Courbes (Bezier3) : 5957
+Nombre de Contours : 106
+d = 0.500000
+
+real	0m0,418s
+user	0m0,398s
+sys	0m0,004s
+
+
+Fichier : TST_TACHE8/Picasso-ColombesDeLaPaix.pbm
+Nombre de Courbes (Bezier3) : 1155
+Nombre de Contours : 106
+d = 1.000000
+
+real	0m0,326s
+user	0m0,311s
+sys	0m0,005s
+
+
+Fichier : TST_TACHE8/Picasso-ColombesDeLaPaix.pbm
+Nombre de Courbes (Bezier3) : 563
+Nombre de Contours : 106
+d = 2.000000
+
+real	0m0,295s
+user	0m0,284s
+sys	0m0,005s
+
+
+Fichier : TST_TACHE8/Picasso-ColombesDeLaPaix.pbm
+Nombre de Courbes (Bezier3) : 385
+Nombre de Contours : 106
+d = 4.000000
+
+real	0m0,302s
+user	0m0,280s
+sys	0m0,012s
+
+
+Fichier : TST_TACHE8/Picasso-ColombesDeLaPaix.pbm
+Nombre de Courbes (Bezier3) : 259
+Nombre de Contours : 106
+d = 8.000000
+
+real	0m0,300s
+user	0m0,279s
+sys	0m0,012s
+
+
+Fichier : TST_TACHE8/Picasso-ColombesDeLaPaix.pbm
+Nombre de Courbes (Bezier3) : 180
+Nombre de Contours : 106
+d = 16.000000
+
+real	0m0,264s
+user	0m0,257s
+sys	0m0,000s

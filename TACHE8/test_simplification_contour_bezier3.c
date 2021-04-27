@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "simplification_contour.h"
 
+/* Programme de TEST pour la simplification d'une image par des courbes de Bezier de degré 3 */
 int main(int argc, char** argv)
 {
 

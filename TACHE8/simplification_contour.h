@@ -8,6 +8,7 @@ Liste_Point simplification_douglas_peucker(Tableau_Point C, int j1, int j2, doub
 
 Bezier2 approx_bezier2(Tableau_Point C, int j1, int j2);
 
+// Fonction GAMMA requise en TACHE7-2
 double gamma_(double k, double n);
 
 Bezier3 approx_bezier3(Tableau_Point C, int j1, int j2);

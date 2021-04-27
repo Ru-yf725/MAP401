@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <math.h>
 
+// Programme de TEST pour le paquetage GEOM2D
 int main(int argc, char** argv)
 {
   if (argc != 7)
