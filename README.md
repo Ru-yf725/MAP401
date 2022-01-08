@@ -1,9 +1,10 @@
 # MAP 401 - Projet logiciel
-#### Tache 1 : Image Bitmap
-#### Tache 2 : Géométrie 2D
-#### Tache 3 : Extraction d'un contour d'une image
-#### Tache 4 : Sortie au format EPS
-#### Tache 5 : Extraction des contours d'une image
-#### Tache 6 : Simplification d'un contour par segments
-#### Tache 7 : Simplification d'un contour par courbes de Bézier
-#### Tache 8 : Tests de performance
+University Project in which we vectorize bitmap images, in order to achieve that, the general task was broken down into sub-tasks (shown below) 
+#### Task 1 : Bitmap Image
+#### Task 2 : 2D Geometry
+#### Task 3 : Extracting the outline of an image
+#### Task 4 : Output in EPS format
+#### Task 5 : Extracting multiple outlines of an image
+#### Task 6 : Simplifying an outline by segments
+#### Task 7 : Simplifying an outline using Bézier curves
+#### Task 8 : Performance tests
